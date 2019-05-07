@@ -908,6 +908,11 @@ footer {
     padding: 15px 20px;
     display: block
 }
+footer_accounts {
+    background: #fff;
+    padding: 15px 20px;
+    display: block
+}
 .nav-sm footer {
     margin-left: 70px
 }
@@ -1696,6 +1701,10 @@ span.right {
 @media (min-width: 992px) {
     footer {
         margin-left: 230px
+    }
+@media (min-width: 992px) {
+    footer_accounts {
+        margin-left: 0px
     }
 }
 @media (min-width: 992px) {
