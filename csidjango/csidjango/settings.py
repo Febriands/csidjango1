@@ -27,6 +27,16 @@ SECRET_KEY = 'd&nsqhc6+w)+g1&nl-5uqp12u4a6=f-jbvk!jsy0yfdv&58x3@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# for seeing dbs structure
+# 1. install in env: pip install django-extensions and pip install pyparsing pydot
+# 2. install in os (windows): install graphviz and added in path
+# 3. use command: python manage.py graph_models --pydot -a -g -o my_project_visualized_dbs.png
+# or too see in .dot file: python manage.py graph_models -a > my_project_dbs.dot
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
+
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -41,7 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'process.apps.ProcessConfig',
-    'accounts.apps.AccountsConfig',    
+    'accounts.apps.AccountsConfig',
+    'django_extensions',    
 ]
 
 MIDDLEWARE = [
@@ -129,4 +140,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = [MEDIA_DIR]
+MEDIA_ROOT = MEDIA_DIR #don't use [], error: path should be string bytes or os.pathlike not list 
