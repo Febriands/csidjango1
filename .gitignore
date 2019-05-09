@@ -5,3 +5,6 @@ csidjango/accounts/__pycache__/
 csidjango/casidjango/__pycache__/
 csidjango/process/__pycache__/
 csidjango/db.sqlite3
+
+settings.py
+wsgi.py
