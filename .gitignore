@@ -8,3 +8,4 @@ csidjango/db.sqlite3
 
 settings.py
 wsgi.py
+manage.py
