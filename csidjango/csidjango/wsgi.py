@@ -24,7 +24,7 @@ import sys
 
 from django.core.wsgi import get_wsgi_application
 
-sys.path.append('/home/febriands/public_html/csidjango1/csidjango1/csidjango1') 
+sys.path.append('/home/febriands/public_html/csidjango1/csidjango1/csidjango') 
 sys.path.append('/home/febriands/env1/lib/python3.6/site-packages')
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'csidjango.settings')

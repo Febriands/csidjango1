@@ -89,29 +89,29 @@ WSGI_APPLICATION = 'csidjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'csi',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost'
-    },
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'csi'
-#         ,
+#         'NAME': 'csi',
 #         'USER': 'root',
-#         'PASSWORD': '',       
-#         'OPTIONS': {'charset': 'utf8mb4',                    
-#                     },
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     }
+#         'PASSWORD': '',
+#         'HOST': 'localhost'
+#     },
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'csi'
+        ,
+        'USER': 'root',
+        'PASSWORD': '',       
+        'OPTIONS': {'charset': 'utf8mb4',                    
+                    },
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
