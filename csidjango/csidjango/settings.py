@@ -37,7 +37,7 @@ GRAPH_MODELS = {
   'group_models': True,
 }
 
-ALLOWED_HOSTS = ['35.186.158.165','csi.febriands.com','www.csi.febriands.com']
+ALLOWED_HOSTS = ['35.186.158.165','csi.febriands.com','www.csi.febriands.com','127.0.0.1']
 
 AUTH_USER_MODEL = 'accounts.User'
 
@@ -99,6 +99,19 @@ DATABASES = {
     },
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'csi'
+#         ,
+#         'USER': 'root',
+#         'PASSWORD': '',       
+#         'OPTIONS': {'charset': 'utf8mb4',                    
+#                     },
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
