@@ -37,7 +37,7 @@ GRAPH_MODELS = {
   'group_models': True,
 }
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['35.186.158.165','csi.febriands.com','www.csi.febriands.com']
 
 AUTH_USER_MODEL = 'accounts.User'
 
