@@ -11,7 +11,7 @@ class Steps(models.Model):
     name = models.CharField(max_length=150)
 
 
-class Steps_Forms(models.Model):
+class StepsForms(models.Model):
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
     form_type = models.CharField(max_length=20)
     name = models.CharField(max_length=150)
@@ -25,13 +25,13 @@ class Certifications(models.Model):
     created = models.BigIntegerField()
     updated = models.BigIntegerField()
 
-class Certifications_Details(models.Model):
+class CertificationsDetails(models.Model):
     certifications = models.ForeignKey(Certifications, on_delete=models.CASCADE)
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
     steps_forms = models.ForeignKey(Steps_Forms, on_delete=models.CASCADE)
     value = models.TextField()
 
-class Files_Process_Certifications(models.Model):
+class FilesProcessCertifications(models.Model):
     types = models.ForeignKey(Types, on_delete=models.CASCADE)
     certifications = models.ForeignKey(Certifications, on_delete=models.CASCADE)
     files_formulir_aplikasi = models.FileField(upload_to='files_process/', null=True, blank=True)
