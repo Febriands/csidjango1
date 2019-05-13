@@ -126,6 +126,8 @@ DATABASES = {
         ,
         'USER': 'root',
         'PASSWORD': '',       
+        # 'USER': 'csi',
+        # 'PASSWORD': 'Csi@321013',       
         'OPTIONS': {'charset': 'utf8mb4',                    
                     },
         'HOST': 'localhost',
