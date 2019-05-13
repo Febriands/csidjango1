@@ -83,6 +83,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
+    # gender_choices = ( ('M', 'Male'), ('F','Female'),)
+    # gender = models.CharField(max_length=5, choices = gender_choices, null=True, blank=True)
+    
+    profile_pic = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    curriculum_vitae = models.FileField(upload_to='curriculum_vitae/', null=True, blank=True)
+
+
     objects = UserManager()
 
     EMAIL_FIELD = 'email'

@@ -43,17 +43,37 @@ AUTH_USER_MODEL = 'accounts.User'
 
 # Application definition
 
-INSTALLED_APPS = [
+# INSTALLED_APPS = [
+#     'django.contrib.admin',
+#     'django.contrib.auth',
+#     'django.contrib.contenttypes',
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',
+#     'process.apps.ProcessConfig',
+#     'accounts.apps.AccountsConfig',
+#     'django_extensions',    
+#     'django_cleanup.apps.CleanupConfig',
+# ]
+
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+THIRD_PARTY_APPS = [
+    'django_extensions',    
+    'django_cleanup.apps.CleanupConfig',
+]
+LOCAL_APPS = [
     'process.apps.ProcessConfig',
     'accounts.apps.AccountsConfig',
-    'django_extensions',    
 ]
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -149,8 +169,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+# STATIC_ROOT = '/path/to/static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR #don't use [], error: path should be string bytes or os.pathlike not list 
+# MEDIA_ROOT = STATIC_ROOT + 'media/'
