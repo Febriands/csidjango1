@@ -23,9 +23,13 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.IndexView.as_view(), name = 'index'),
+    path('home/', views.HomeView.as_view(), name = 'home'),
     path('accounts/', include('accounts.urls', namespace = 'accounts')),
     path('process/', include('process.urls', namespace = 'process')),
+    path('list/', include('csilists.urls', namespace = 'list')),
+    path('api-auth/', include('rest_framework.urls', namespace = 'api_auth')),    
 ]
 
 if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

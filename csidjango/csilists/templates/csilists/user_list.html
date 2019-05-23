@@ -1,0 +1,21 @@
+{% extends "csilists/base_list.html" %}
+
+{% block content_list_head %}
+<th>No.</th>                   
+<th>Username</th>                   
+<th>Nama Lengkap</th>                   
+<th>Email</th>                   
+<th>Action</th>                   
+{% endblock content_list_head %}
+
+{% block content_list_body %}
+<td>{{ user.id }}</td>                   
+<td>{{ user.username }}</td>                   
+<td>{{ user.get_full_name }}</td>                   
+<td>{{ user.email }}</td>  
+{% comment %} <td><a href="{% url 'accounts:profile' %}" class="btn btn-app"><i class="fa fa-edit"></i> Edit </a></button></td> {% endcomment %}
+<td align = "center">
+    <button type="button" class="btn btn-primary btn-ms">Profile</button> 
+</td>
+                         
+{% endblock content_list_body %}

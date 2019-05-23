@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_index.html' %}
 
 {% block title %} Index {% endblock title %}
 
@@ -11,10 +11,9 @@
 <h1>This is Index Page</h1>
 <ul>
 <a href="{% url 'index' %}">Index</a>
-<a href="{% url 'process:home' %}">Home</a>
+<a href="{% url 'home' %}">Home</a>
 <a href="{% url 'accounts:login' %}">Login</a>
 <a href="{% url 'admin:index' %}">Admin</a>
-<a href="{% url 'process:tables' %}">Tables</a>
 </ul>    
 </div>
 {% endblock content %}

@@ -38,16 +38,27 @@
       <div class="container body">
         <div class="main_container">
 
+          {% block sidebar %}
+            <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
+              {% include "sidebar_home.html" %}
+            </div>
+          {% endblock sidebar %}
+
+          {% block top_navigation %}
+            <div class="top_nav">
+              {% include "top_navigation_home.html" %}
+            </div>
+          {% endblock top_navigation %}
+
           {% block content %}
             <!-- {{ content }} -->
           {% endblock content %}
-          
+
           {% block footer %}
-            <footer_accounts>
-              {% include "accounts/footer.html" %}
-            </footer_accounts>
+            <footer>
+              {% include "footer_home.html" %}
+            </footer>
           {% endblock footer %}
-          
         </div>
       </div>
 
@@ -85,7 +96,7 @@
         <script src="/static/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
         <!-- starrr -->
         <script src="/static/vendors/starrr/dist/starrr.js"></script>
-      {% endblock javascripts  %}
+      {% endblock %}
       <!-- Custom Theme Scripts -->
       <script src="/static/build/js/custom.js"></script>
     {% endblock body %}

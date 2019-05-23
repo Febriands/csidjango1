@@ -43,19 +43,6 @@ AUTH_USER_MODEL = 'accounts.User'
 
 # Application definition
 
-# INSTALLED_APPS = [
-#     'django.contrib.admin',
-#     'django.contrib.auth',
-#     'django.contrib.contenttypes',
-#     'django.contrib.sessions',
-#     'django.contrib.messages',
-#     'django.contrib.staticfiles',
-#     'process.apps.ProcessConfig',
-#     'accounts.apps.AccountsConfig',
-#     'django_extensions',    
-#     'django_cleanup.apps.CleanupConfig',
-# ]
-
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -67,10 +54,13 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'django_extensions',    
     'django_cleanup.apps.CleanupConfig',
+    'rest_framework',
+    'rest_framework_datatables',
 ]
 LOCAL_APPS = [
     'process.apps.ProcessConfig',
     'accounts.apps.AccountsConfig',
+    'csilists.apps.CsilistsConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -84,6 +74,24 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_datatables.renderers.DatatablesRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework_datatables.filters.DatatablesFilterBackend',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework_datatables.pagination.DatatablesPageNumberPagination',
+    'PAGE_SIZE': 50,
+}
 
 ROOT_URLCONF = 'csidjango.urls'
 
@@ -105,19 +113,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'csidjango.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'csi',
-#         'USER': 'root',
-#         'PASSWORD': '',
-#         'HOST': 'localhost'
-#     },
-# }
 
 DATABASES = {
     'default': {
@@ -171,10 +168,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-# STATIC_ROOT = '/path/to/static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR #don't use [], error: path should be string bytes or os.pathlike not list 
-# MEDIA_ROOT = STATIC_ROOT + 'media/'
