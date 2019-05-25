@@ -20,11 +20,30 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+from process.controllers import types
+from process.controllers import steps
+from process.controllers import forms
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.IndexView.as_view(), name = 'index'),
     path('accounts/', include('accounts.urls', namespace = 'accounts')),
     path('process/', include('process.urls', namespace = 'process')),
+
+    # api types
+    path('api/types/', types.index),
+    path('api/types/save', types.save),
+    path('api/types/delete', types.delete),
+
+    # api steps
+    path('api/steps/<int:types_id>/', steps.index),
+    path('api/steps/save', steps.save),
+    path('api/steps/delete', steps.delete),
+
+    # api steps forms
+    path('api/forms/<int:steps_id>/', forms.index),
+    path('api/forms/save', forms.save),
+    path('api/forms/delete', forms.delete),
 ]
 
 if settings.DEBUG:
