@@ -25,11 +25,13 @@ class Certifications(models.Model):
     created = models.BigIntegerField()
     updated = models.BigIntegerField()
 
+
 class CertificationsDetails(models.Model):
     certifications = models.ForeignKey(Certifications, on_delete=models.CASCADE)
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
     steps_forms = models.ForeignKey(StepsForms, on_delete=models.CASCADE)
     value = models.TextField()
+
 
 class FilesProcessCertifications(models.Model):
     types = models.ForeignKey(Types, on_delete=models.CASCADE)

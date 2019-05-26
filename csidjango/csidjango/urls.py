@@ -23,6 +23,8 @@ from django.conf import settings
 from process.controllers import types
 from process.controllers import steps
 from process.controllers import forms
+from process.controllers import certifications
+from process.controllers import certifications_details
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -44,6 +46,16 @@ urlpatterns = [
     path('api/forms/<int:steps_id>/', forms.index),
     path('api/forms/save', forms.save),
     path('api/forms/delete', forms.delete),
+
+    # api certifications forms
+    path('api/certifications/<int:types_id>/', certifications.index),
+    path('api/certifications/save', certifications.save),
+    path('api/certifications/delete', certifications.delete),
+
+    # api certifications details forms
+    path('api/details/<int:cert_id>/<int:steps_id>/', certifications_details.index),
+    path('api/details/save', certifications_details.save),
+    path('api/details/delete', certifications_details.delete),
 ]
 
 if settings.DEBUG:
