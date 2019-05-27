@@ -38,27 +38,27 @@
       <div class="container body">
         <div class="main_container">
 
-          {% comment %} {% block sidebar %}
+          {% block sidebar %}
             <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
-              {% include "sidebar.html" %}
+              {% include "sidebar_dashboard.html" %}
             </div>
-          {% endblock sidebar %} {% endcomment %}
+          {% endblock sidebar %}
 
-          {% comment %} {% block top_navigation %}
+          {% block top_navigation %}
             <div class="top_nav">
-              {% include "top_navigation.html" %}
+              {% include "top_navigation_dashboard.html" %}
             </div>
-          {% endblock top_navigation %} {% endcomment %}
+          {% endblock top_navigation %}
 
           {% block content %}
             <!-- {{ content }} -->
           {% endblock content %}
 
-          {% comment %} {% block footer %}
+          {% block footer %}
             <footer>
-              {% include "footer.html" %}
+              {% include "footer_dashboard.html" %}
             </footer>
-          {% endblock footer %} {% endcomment %}
+          {% endblock footer %}
         </div>
       </div>
 
