@@ -9,7 +9,13 @@ from django.shortcuts import get_object_or_404
 from process.models import Types, Steps
 
 def index(request, types_id):
-    steps = Steps.objects.filter(types_id=types_id)
+    steps_id = request.GET.get('id') if request.GET.get('id') else None
+    
+    if steps_id:
+        steps = Steps.objects.filter(id=steps_id, types_id=types_id)
+    else:
+        steps = Steps.objects.filter(types_id=types_id)
+
     steps = serializers.serialize('json', steps)
     return JsonResponse({
         'done': True,
@@ -21,7 +27,7 @@ def save(request):
     done = False
     message = "Failed"
 
-    steps_id = request.POST.get('id')
+    steps_id = request.POST.get('id') if request.POST.get('id') != "" else None
 
     if steps_id:
         steps = Steps.objects.get(id=steps_id)
@@ -44,7 +50,7 @@ def delete(request):
     done = False
     message = "Failed"
 
-    steps_id = request.POST.get('id')
+    steps_id = request.GET.get('id')
 
     if steps_id:
         steps = Steps.objects.filter(id=steps_id).first()

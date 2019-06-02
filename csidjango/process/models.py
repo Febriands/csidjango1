@@ -8,29 +8,53 @@ class Types(models.Model):
 
 class Steps(models.Model):
     types = models.ForeignKey(Types, on_delete=models.CASCADE)
+    order = models.IntegerField(default=0)
     name = models.CharField(max_length=150)
 
 
 class StepsForms(models.Model):
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
-    form_type = models.CharField(max_length=20)
+    form_type_choices = (
+        (0, 'Number'),
+        (1, 'Text'),
+    )
+    form_type = models.IntegerField(choices=form_type_choices, default=1)
+    name = models.CharField(max_length=150)
+
+
+class OfflineDocuments(models.Model):
+    steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
 
 
 class Certifications(models.Model):
     types = models.ForeignKey(Types, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
-    completed = models.IntegerField()
+    completed = models.IntegerField(default=0)
     left = models.IntegerField()
     created = models.BigIntegerField()
     updated = models.BigIntegerField()
 
 
-class CertificationsDetails(models.Model):
+class CertificationsSteps(models.Model):
     certifications = models.ForeignKey(Certifications, on_delete=models.CASCADE)
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
+    validated = models.BooleanField(default=False)
+    validator = models.IntegerField(default=None)
+    validation_date = models.BigIntegerField(default=None)
+
+
+class CertificationsDetails(models.Model):
+    certifications = models.ForeignKey(Certifications, on_delete=models.CASCADE)
+    certifications_steps = models.ForeignKey(CertificationsSteps, on_delete=models.CASCADE)
     steps_forms = models.ForeignKey(StepsForms, on_delete=models.CASCADE)
-    value = models.TextField()
+    value = models.TextField(default=None)
+
+
+class CertificationsOfflineDocuments(models.Model):
+    offline_documents = models.ForeignKey(OfflineDocuments, on_delete=models.CASCADE)
+    certifications_steps = models.ForeignKey(CertificationsSteps, on_delete=models.CASCADE)
+    files_path = models.CharField(max_length=200, default=None)
 
 
 class FilesProcessCertifications(models.Model):
