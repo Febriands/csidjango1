@@ -11,8 +11,8 @@ $(document).ready(function(){
                 data.forEach(function(item) {
                     var actions = `
                         <button type="button" class="btn btn-primary action-detail" id="`+ item.pk +`"><i class="fa fa-search"></i> Tahap</button>
-                        <button type="button" class="btn btn-warning action-edit" id="`+ item.pk +`"><i class="fa fa-edit"></i> Edit</button>
-                        <button type="button" class="btn btn-danger action-delete" id="`+ item.pk +`"><i class="fa fa-trash"></i> Delete</button>
+                        <button type="button" class="btn btn-warning action-edit" id="`+ item.pk +`"><i class="fa fa-edit"></i> Ubah</button>
+                        <button type="button" class="btn btn-danger action-delete" id="`+ item.pk +`"><i class="fa fa-trash"></i> Hapus</button>
                     `;
 
                     rows.push([

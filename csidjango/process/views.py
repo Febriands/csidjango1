@@ -21,3 +21,11 @@ def steps(request, types_id):
         "types_id": types.id,
         "types_name": types.name,
     })
+
+def steps_forms(request, steps_id):
+    steps = Steps.objects.filter(id=steps_id).first()
+
+    return render(request, "process/steps_forms.html", {
+        "steps_id": steps.id,
+        "steps_name": steps.name,
+    })

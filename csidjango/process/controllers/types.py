@@ -49,7 +49,7 @@ def delete(request):
     done = False
     message = "Failed"
 
-    types_id = request.GET.get('id')
+    types_id = request.GET.get('id') if request.GET.get('id') else None
 
     if types_id:
         types = Types.objects.filter(id=types_id).first()

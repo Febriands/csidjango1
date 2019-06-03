@@ -7,6 +7,16 @@ class Types(models.Model):
 
 
 class Steps(models.Model):
+    def save(self, *args, **kwargs):
+        if not self.order or self.order == 0:
+            last = Steps.objects.filter(types=self.types).order_by('-order').first()
+            if last:
+                self.order = last.order + 1
+            else:
+                self.order = 1
+
+        super(Steps, self).save(*args, **kwargs)
+
     types = models.ForeignKey(Types, on_delete=models.CASCADE)
     order = models.IntegerField(default=0)
     name = models.CharField(max_length=150)

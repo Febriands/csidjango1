@@ -1,0 +1,199 @@
+{% extends "process/base.html" %}
+
+{% block title %} Table Dynamic {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+  <div class="right_col" role="main">
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>Kelengkapan Tahap {{ steps_name }}</h3>
+        </div>
+
+      <div class="clearfix"></div>
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Daftar Form</h2>
+              <div class="input-group pull-right">
+                <button id="addForm" type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_form"><i class="fa fa-plus"></i> Tambah Form</button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <table id="table_forms" class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Nama</th>
+                    <th>Jenis Form</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Daftar Dokumen</h2>
+              <div class="input-group pull-right">
+                <button id="addDocument" type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_document"><i class="fa fa-plus"></i> Tambah Dokumen</button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <table id="table_documents" class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Nama</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-plus"></i> Tambah Jenis Sertifikasi</button> -->
+  
+  <div class="modal fade bs-example-modal-sm" id="modal_form" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel2">Tambah Form</h4>
+        </div>
+        <div class="modal-body">
+          <!-- <h4>Text in a modal</h4> -->
+          <form id="form_steps_forms" data-parsley-validate class="form-horizontal form-label-left">
+            <input type='hidden' name='steps_id' id="steps_id" value='{{ steps_id }}'/>
+            <input type='hidden' name='id' id="forms_id" value=''/>
+            <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}'/>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Nama
+              </label>
+              <div class="col-md-10 col-sm-10 col-xs-12">
+                <input type="text" name="name" id="steps_forms_name" required="required" class="form-control col-md-7 col-xs-12">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Jenis
+              </label>
+              <div class="col-md-10 col-sm-10 col-xs-12">
+                <select class="form-control" name="form_type" id="form_type" required>
+                  <option value="0">Angka</option>
+                  <option value="1">Teks</option>
+                </select>
+              </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <button class="btn btn-primary" type="button" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-success" id="saveSteps">Simpan</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveTypes">Save changes</button>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+  <div class="modal fade bs-example-modal-sm" id="modal_document" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel2">Tambah Dokumen</h4>
+        </div>
+        <div class="modal-body">
+          <!-- <h4>Text in a modal</h4> -->
+          <form id="form_offline_documents" data-parsley-validate class="form-horizontal form-label-left">
+            <input type='hidden' name='steps_id' id="steps_id" value='{{ steps_id }}'/>
+            <input type='hidden' name='id' id="document_id" value=''/>
+            <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}'/>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Nama
+              </label>
+              <div class="col-md-10 col-sm-10 col-xs-12">
+                <input type="text" name="name" id="offline_documents_name" required="required" class="form-control col-md-7 col-xs-12">
+              </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <button class="btn btn-primary" type="button" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-success" id="saveSteps">Simpan</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveTypes">Save changes</button>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super }}
+  <!-- Datatables -->
+  <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+  <script src="/static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+  <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+  <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+  <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+  <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+  <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
+  <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
+  <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
+
+  <!-- Custom JS -->
+  <script src="/static/js/steps_forms.js"></script>
+  <script>
+    var steps_id = "{{ steps_id }}";
+  </script>
+{% endblock javascripts %}

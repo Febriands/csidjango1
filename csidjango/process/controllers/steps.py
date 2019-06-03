@@ -50,7 +50,7 @@ def delete(request):
     done = False
     message = "Failed"
 
-    steps_id = request.GET.get('id')
+    steps_id = request.GET.get('id') if request.GET.get('id') else None
 
     if steps_id:
         steps = Steps.objects.filter(id=steps_id).first()
