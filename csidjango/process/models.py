@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import User
 
 # Create your models here.
 
@@ -40,6 +41,7 @@ class OfflineDocuments(models.Model):
 class Certifications(models.Model):
     types = models.ForeignKey(Types, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     completed = models.IntegerField(default=0)
     left = models.IntegerField()
     created = models.BigIntegerField()
@@ -50,21 +52,21 @@ class CertificationsSteps(models.Model):
     certifications = models.ForeignKey(Certifications, on_delete=models.CASCADE)
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
     validated = models.BooleanField(default=False)
-    validator = models.IntegerField(default=None)
-    validation_date = models.BigIntegerField(default=None)
+    validator_role = models.IntegerField(default=0)
+    validator = models.IntegerField(default=None, null=True, blank=True)
+    validation_date = models.BigIntegerField(default=None, null=True, blank=True)
 
 
 class CertificationsDetails(models.Model):
-    certifications = models.ForeignKey(Certifications, on_delete=models.CASCADE)
     certifications_steps = models.ForeignKey(CertificationsSteps, on_delete=models.CASCADE)
     steps_forms = models.ForeignKey(StepsForms, on_delete=models.CASCADE)
-    value = models.TextField(default=None)
+    value = models.TextField(default=None, null=True, blank=True)
 
 
 class CertificationsOfflineDocuments(models.Model):
-    offline_documents = models.ForeignKey(OfflineDocuments, on_delete=models.CASCADE)
     certifications_steps = models.ForeignKey(CertificationsSteps, on_delete=models.CASCADE)
-    files_path = models.CharField(max_length=200, default=None)
+    offline_documents = models.ForeignKey(OfflineDocuments, on_delete=models.CASCADE)
+    files_path = models.CharField(max_length=200, default=None, null=True, blank=True)
 
 
 class FilesProcessCertifications(models.Model):

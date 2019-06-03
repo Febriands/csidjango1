@@ -54,7 +54,8 @@ urlpatterns = [
     path('api/docs/delete', docs.delete),
 
     # api certifications forms
-    path('api/certifications/<int:types_id>/', certifications.index),
+    path('api/certifications/', certifications.index),
+    path('api/certifications/<int:types_id>/', certifications.get_by_type),
     path('api/certifications/save', certifications.save),
     path('api/certifications/delete', certifications.delete),
 

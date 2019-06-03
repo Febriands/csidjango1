@@ -29,3 +29,6 @@ def steps_forms(request, steps_id):
         "steps_id": steps.id,
         "steps_name": steps.name,
     })
+
+def certifications(request):
+    return render(request, "process/certifications.html")
