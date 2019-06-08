@@ -14,12 +14,12 @@ class TablesView(TemplateView):
     template_name = "process/tables.html"
 
 class TypesView(TemplateView):
-    template_name = "process/types.html"
+    template_name = "types.html"
 
 def steps(request, types_id):
     types = Types.objects.filter(id=types_id).first()
 
-    return render(request, "process/steps.html", {
+    return render(request, "steps.html", {
         "types_id": types.id,
         "types_name": types.name,
     })
@@ -27,13 +27,13 @@ def steps(request, types_id):
 def steps_forms(request, steps_id):
     steps = Steps.objects.filter(id=steps_id).first()
 
-    return render(request, "process/steps_forms.html", {
+    return render(request, "steps_forms.html", {
         "steps_id": steps.id,
         "steps_name": steps.name,
     })
 
 def certifications(request):
-    return render(request, "process/certifications.html")
+    return render(request, "certifications.html")
 
 def details(request, cert_id):
     steps = CertificationsSteps.objects.filter(certifications_id=cert_id).order_by('-steps_id')
@@ -43,7 +43,7 @@ def details(request, cert_id):
         if not step.validated:
             active = step.id
 
-    return render(request, "process/details.html", {
+    return render(request, "details.html", {
         "certifications": steps[0].certifications.id,
         "steps": steps.order_by('steps_id'),
         "name": steps[0].certifications.name,
