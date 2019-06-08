@@ -37,28 +37,11 @@
     {% block body %}
       <div class="container body">
         <div class="main_container">
-
-          {% comment %} {% block sidebar %}
-            <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
-              {% include "sidebar.html" %}
-            </div>
-          {% endblock sidebar %} {% endcomment %}
-
-          {% comment %} {% block top_navigation %}
-            <div class="top_nav">
-              {% include "top_navigation.html" %}
-            </div>
-          {% endblock top_navigation %} {% endcomment %}
-
+          
           {% block content %}
             <!-- {{ content }} -->
           {% endblock content %}
-
-          {% comment %} {% block footer %}
-            <footer>
-              {% include "footer.html" %}
-            </footer>
-          {% endblock footer %} {% endcomment %}
+          
         </div>
       </div>
 

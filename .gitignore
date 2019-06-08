@@ -1,5 +1,6 @@
 .vscode/
 myvenv/
+media/
 
 csidjango/accounts/__pycache__/*
 csidjango/casidjango/__pycache__/*

@@ -30,6 +30,8 @@ from process.controllers import certifications_steps
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.IndexView.as_view(), name = 'index'),
+    path('dashboard/', views.DashboardView.as_view(), name = 'dashboard'),
+    path('error404', views.Error404View.as_view(), name = 'error404'),
     path('accounts/', include('accounts.urls', namespace = 'accounts')),
     path('process/', include('process.urls', namespace = 'process')),
 
@@ -63,6 +65,10 @@ urlpatterns = [
     path('api/details/<int:steps_id>/', certifications_steps.index),
     path('api/details/save', certifications_steps.save),
     path('api/details/docs/save', certifications_steps.save_docs),
+    
+    path('progress/', include('progress.urls', namespace = 'progress')),
+    path('schedules/', include('schedules.urls', namespace = 'schedules')),
+    path('lists/', include('lists.urls', namespace = 'lists')),
 ]
 
 if settings.DEBUG:

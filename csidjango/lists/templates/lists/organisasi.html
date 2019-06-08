@@ -1,0 +1,29 @@
+{% extends "lists/base_list.html" %}
+
+{% block table_title %}
+Organisasi List
+{% endblock table_title %}
+
+{% block content_list_head %}
+<tr>
+    <th>No.</th>                   
+    <th>Username</th>                   
+    <th>Nama Lengkap</th>                   
+    <th>Email</th>                   
+    <th>Action</th>                   
+</tr>
+{% endblock content_list_head %}
+
+{% block content_list_body %}
+{% for user in users %}
+<tr>
+    <td>{{ user.id }}</td>                   
+    <td>{{ user.username }}</td>                   
+    <td>{{ user.get_full_name }}</td>                   
+    <td>{{ user.email }}</td>  
+    <td align = "center">
+        <button type="button" class="btn btn-primary btn-ms">Profile</button> 
+    </td>
+</tr>                                   
+{% endfor %}
+{% endblock content_list_body %}

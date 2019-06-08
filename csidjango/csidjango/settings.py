@@ -56,6 +56,13 @@ AUTH_USER_MODEL = 'accounts.User'
 #     'django_cleanup.apps.CleanupConfig',
 # ]
 
+# pip install list{
+    # pip install pillow
+    # pip install django-extensions
+    # pip install pyparsing pydot
+    # pip install django-cleanup
+# }
+
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -69,8 +76,11 @@ THIRD_PARTY_APPS = [
     'django_cleanup.apps.CleanupConfig',
 ]
 LOCAL_APPS = [
-    'process.apps.ProcessConfig',
     'accounts.apps.AccountsConfig',
+    'process.apps.ProcessConfig',
+    'progress.apps.ProgressConfig',
+    'schedules.apps.SchedulesConfig',
+    'lists.apps.ListsConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -124,10 +134,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'csi'
         ,
-        'USER': 'root',
-        'PASSWORD': '',       
-        # 'USER': 'csi',
-        # 'PASSWORD': 'Csi@321013',       
+        # 'USER': 'root',
+        # 'PASSWORD': '',       
+        'USER': 'csi',
+        'PASSWORD': 'Csi@321013',       
         'OPTIONS': {'charset': 'utf8mb4',                    
                     },
         'HOST': 'localhost',
