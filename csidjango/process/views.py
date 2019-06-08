@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
+from django.core import serializers
+from django.conf import settings
 
-from process.models import Types, Steps
+from process.models import Types, Steps, CertificationsSteps
 
 # Create your views here.
 
@@ -32,3 +34,19 @@ def steps_forms(request, steps_id):
 
 def certifications(request):
     return render(request, "process/certifications.html")
+
+def details(request, cert_id):
+    steps = CertificationsSteps.objects.filter(certifications_id=cert_id).order_by('-steps_id')
+    active = steps[0].id
+
+    for step in steps:
+        if not step.validated:
+            active = step.id
+
+    return render(request, "process/details.html", {
+        "certifications": steps[0].certifications.id,
+        "steps": steps.order_by('steps_id'),
+        "name": steps[0].certifications.name,
+        "active": active,
+        "media": settings.MEDIA_ROOT
+    })

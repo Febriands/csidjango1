@@ -25,7 +25,7 @@ from process.controllers import steps
 from process.controllers import forms
 from process.controllers import offline_documents as docs
 from process.controllers import certifications
-from process.controllers import certifications_details
+from process.controllers import certifications_steps
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -60,9 +60,9 @@ urlpatterns = [
     path('api/certifications/delete', certifications.delete),
 
     # api certifications details forms
-    path('api/details/<int:cert_id>/<int:steps_id>/', certifications_details.index),
-    path('api/details/save', certifications_details.save),
-    path('api/details/delete', certifications_details.delete),
+    path('api/details/<int:steps_id>/', certifications_steps.index),
+    path('api/details/save', certifications_steps.save),
+    path('api/details/docs/save', certifications_steps.save_docs),
 ]
 
 if settings.DEBUG:

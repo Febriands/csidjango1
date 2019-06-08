@@ -76,6 +76,7 @@ def save(request):
                 c_details.certifications_steps = c_steps
                 c_details.steps_forms = form
                 c_details.save()
+                
 
             documents = OfflineDocuments.objects.filter(steps=step)
 
