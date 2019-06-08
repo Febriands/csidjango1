@@ -86,8 +86,7 @@ $(document).ready(function(){
     });
 
     $(document).on("click",".action-detail",function () {
-        alert('Lihat detail sertifikasi');
-        // location.href = '/process/steps/'+this.id
+        location.href = '/process/details/'+this.id
     });
     
     $(document).on("click",".action-delete",function () {
