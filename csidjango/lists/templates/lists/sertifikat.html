@@ -1,28 +1,36 @@
 {% extends "lists/base_list.html" %}
 
 {% block table_title %}
-Serifikat List
+<h2>Serifikat List</h2>
+<div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+    <div class="input-group pull-right">
+        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-plus"></i> Tambah </button>
+    </div>
+    </div>
+</div>
 {% endblock table_title %}
 
 {% block content_list_head %}
 <tr>
-    <th>No.</th>                   
+    <th class="text-center" style="width: 3%">No.</th>                     
     <th>Username</th>                   
     <th>Nama Lengkap</th>                   
     <th>Email</th>                   
-    <th>Action</th>                   
+    <th class="text-center" style="width: 14%">Action</th>                   
 </tr>
 {% endblock content_list_head %}
 
 {% block content_list_body %}
 {% for user in users %}
 <tr>
-    <td>{{ user.id }}</td>                   
+    <td class="text-center">{{ user.id }}</td>                   
     <td>{{ user.username }}</td>                   
     <td>{{ user.get_full_name }}</td>                   
     <td>{{ user.email }}</td>  
     <td align = "center">
-        <button type="button" class="btn btn-primary btn-ms">Profile</button> 
+        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a> 
     </td>
 </tr>                                   
 {% endfor %}

@@ -1,31 +1,34 @@
 {% extends "lists/base_list.html" %}
 
 {% block table_title %}
-User List
+<h2>User List</h2>
+<div class="title_right">
+    <div class="input-group pull-right">
+        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-plus"></i> Tambah </button>
+    </div>    
+</div>
 {% endblock table_title %}
 
 {% block content_list_head %}
 <tr>
-    <th style="width: 1%">No.</th>                   
-    <th style="width: 20%">Username</th>                   
-    <th style="width: 30%">Nama Lengkap</th>                   
-    <th style="width: 20%">Email</th>                   
-    <th style="width: 29%">Action</th>                   
+    <th class="text-center" style="width: 3%">No.</th>                   
+    <th>Username</th>                   
+    <th>Nama Lengkap</th>                   
+    <th>Email</th>                   
+    <th class="text-center" style="width: 14%">Action</th>                   
 </tr>
 {% endblock content_list_head %}
 
 {% block content_list_body %}
 {% for user in users %}
 <tr>
-    <td>{{ user.id }}</td>                   
+    <td class="text-center">{{ user.id }}</td>                   
     <td>{{ user.username }}</td>                   
     <td>{{ user.get_full_name }}</td>                   
     <td>{{ user.email }}</td>  
     <td align = "center">
-        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
         <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-        {% comment %} <button type="button" class="btn btn-primary btn-ms">Profile</button>  {% endcomment %}
+        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a> 
     </td>
 </tr>                                   
 {% endfor %}
