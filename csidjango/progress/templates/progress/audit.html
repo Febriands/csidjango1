@@ -1,0 +1,134 @@
+{% extends "progress/base_progress2.html" %}
+
+{% block table_title1 %}
+Progress Audit Sertifikasi Awal / Resertifikasi
+{% endblock table_title1 %}
+
+{% block content_list_head1 %}
+<tr>
+    <th class="text-center" style="width: 20%">Sertifikasi</th>
+    <th class="text-center">Tim Tahap 1</th>
+    <th class="text-center">Tim Tahap 2</th>
+    <th class="text-center">Audit Tahap 1</th>
+    <th class="text-center">Audit Tahap 2</th>
+    <th class="text-center">Status</th>
+    <th class="text-center" style="width: 8%">#Edit</th>
+</tr>
+{% endblock content_list_head1 %}
+
+{% block content_list_body1 %}
+<tr>
+    <td class="project_progress">
+        <a href="#" class="btn btn-outline-light btn-xs btn-block">
+        PT Jaya Raya Sentosa Abadi<br>        
+        <small >Sertifikasi ISO 9001:2015</small><br>
+        <small>Created 01.01.2015</small>
+        </a>              
+    </td> 
+    <td class="project_progress">
+        <a href="#" class="btn btn-outline-light btn-xs btn-block">
+        <ul class="list-inline">
+        <li>
+            <img src="/static/images/user.png" class="avatar" alt="Avatar">
+        </li>
+        <li>
+            <img src="/static/images/user.png" class="avatar" alt="Avatar">
+        </li>
+        </ul>
+        </a>              
+    </td>      
+    <td class="project_progress">
+        <a href="#" class="btn btn-outline-light btn-xs btn-block">
+        <ul class="list-inline">
+        <li>
+            <img src="/static/images/user.png" class="avatar" alt="Avatar">
+        </li>
+        <li>
+            <img src="/static/images/user.png" class="avatar" alt="Avatar">
+        </li>
+        <li>
+            <img src="/static/images/user.png" class="avatar" alt="Avatar">
+        </li>
+        </ul>
+        </a>              
+    </td>
+    <td class="project_progress">        
+        <a href="#" class="btn btn-outline-light btn-xs btn-block">
+            <div class="progress progress_sm">
+            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="100"></div>
+            </div>
+            <small>100% Complete</small>            
+        </a>          
+    </td>          
+    <td class="project_progress">        
+        <a href="#" class="btn btn-outline-light btn-xs btn-block">
+            <div class="progress progress_sm">
+            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="100"></div>
+            </div>
+            <small>100% Complete</small>            
+        </a>          
+    </td>          
+    <td class="project_progress">
+      <span class="label info">Complete</span>    
+    </td>
+    <td>
+        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+    </td>
+</tr>
+{% endblock content_list_body1 %}
+
+
+{% block table_title2 %}
+Progress Audit Survailen
+{% endblock table_title2 %}
+
+{% block content_list_head2 %}
+<tr>
+    <th class="text-center" style="width: 20%">Sertifikasi</th>
+    <th class="text-center">Tim Survailen</th>
+    <th class="text-center">Audit Survailen</th>
+    <th class="text-center">Status</th>
+    <th class="text-center" style="width: 8%">#Edit</th>
+</tr>
+{% endblock content_list_head2 %}
+
+{% block content_list_body2 %}
+<tr>
+    <td class="project_progress">
+        <a href="#" class="btn btn-outline-light btn-xs btn-block">
+        PT Jaya Raya Sentosa Abadi<br>        
+        <small >Survailen ISO 14001:2015</small><br>
+        <small>Created 01.01.2015</small>
+        </a>              
+    </td>
+    <td class="project_progress">
+        <a href="#" class="btn btn-outline-light btn-xs btn-block">
+        <ul class="list-inline">
+        <li>
+            <img src="/static/images/user.png" class="avatar" alt="Avatar">
+        </li>
+        <li>
+            <img src="/static/images/user.png" class="avatar" alt="Avatar">
+        </li>
+        <li>
+            <img src="/static/images/user.png" class="avatar" alt="Avatar">
+        </li>
+        </ul>
+        </a>              
+    </td>      
+    <td class="project_progress">        
+        <a href="#" class="btn btn-outline-light btn-xs btn-block">
+        <div class="progress progress_sm">
+        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
+        </div>
+        <small>80% Complete</small>
+        </a>          
+    </td>          
+    <td class="project_progress">
+      <span class="label success">In Progress</span>    
+    </td>
+    <td>
+        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+    </td>
+</tr>
+{% endblock content_list_body2 %}
