@@ -2,13 +2,15 @@
 myvenv/
 media/
 
+csidjango/csidjango/__pycache__/*
 csidjango/accounts/__pycache__/*
-csidjango/casidjango/__pycache__/*
 csidjango/process/__pycache__/*
 csidjango/progress/__pycache__/*
+csidjango/lists/__pycache__/*
+csidjango/schedules/__pycache__/*
+
 csidjango/db.sqlite3
 
 settings.py
 wsgi.py
 manage.py
-csidjango/csidjango/__pycache__/*
