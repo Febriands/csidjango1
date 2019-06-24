@@ -20,6 +20,7 @@ from . import views
 from django.conf.urls.static import static
 from django.conf import settings
 
+from lists.controllers import user_list
 from process.controllers import types
 from process.controllers import steps
 from process.controllers import forms
@@ -34,6 +35,11 @@ urlpatterns = [
     path('error404/', views.Error404View.as_view(), name = 'error404'),
     path('accounts/', include('accounts.urls', namespace = 'accounts')),
     path('process/', include('process.urls', namespace = 'process')),
+
+    # api user_list
+    path('api/user_list/', user_list.index),
+    path('api/user_list/save', user_list.save),
+    path('api/user_list/delete', user_list.delete),
 
     # api types
     path('api/types/', types.index),

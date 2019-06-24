@@ -1,6 +1,6 @@
 {% extends "lists/base_list.html" %}
 
-{% block table_title %}
+{% block page_title %}
 <h2>Auditor List</h2>
 <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -9,19 +9,21 @@
     </div>
     </div>
 </div>
-{% endblock table_title %}
+{% endblock page_title %}
 
-{% block content_list_head %}
-<tr>
-    <th class="text-center" style="width: 3%">No.</th>                     
-    <th>Username</th>                   
-    <th>Nama Lengkap</th>                   
-    <th>Email</th>                   
-    <th class="text-center" style="width: 14%">Action</th>                   
-</tr>
-{% endblock content_list_head %}
+{% block datatable_table %}
+<table id="datatable" class="table table-striped table-bordered projects display responsive no-wrap" style="width: 100%">            
+<thead>
+    <tr>
+        <th class="text-center" style="width: 3%">No.</th>                     
+        <th>Username</th>                   
+        <th>Nama Lengkap</th>                   
+        <th>Email</th>                   
+        <th class="text-center" style="width: 14%">Action</th>                   
+    </tr>
+</thead>
 
-{% block content_list_body %}
+<tbody>
 {% for user in users %}
 <tr>
     <td class="text-center">{{ user.id }}</td>                   
@@ -34,4 +36,17 @@
     </td>
 </tr>                                   
 {% endfor %}
-{% endblock content_list_body %}
+</tbody>
+    
+</table>
+{% endblock datatable_table %}
+
+{% block datatable_js %}
+<script>
+$(document).ready(function() {
+    $('#datatable').DataTable({
+    fixedHeader: true,
+    });        
+} );
+</script>
+{% endblock datatable_js %}
