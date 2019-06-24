@@ -1,6 +1,6 @@
-.vscode/
-myvenv/
-media/
+.vscode/*
+myvenv/*
+media/* 
 !media/profile_pics/user.png
 
 csidjango/csidjango/__pycache__/*
