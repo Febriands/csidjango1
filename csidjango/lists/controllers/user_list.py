@@ -10,19 +10,13 @@ from accounts.models import Account
 
 def index(request):
     user_id = request.GET.get('id') if request.GET.get('id') else None
-    # users = User.objects.all()
-    # data = []
+   
     if user_id:
         user = Account.objects.filter(id=user_id)
     else:
         user = Account.objects.all()
 
     user = serializers.serialize('json', user)
-    # for item in users:
-    #     data.append({
-    #             "id": item.id,
-    #             "username": item.username,            
-    #         })
 
     return JsonResponse({
         'done': True,
@@ -34,19 +28,10 @@ def save(request):
     done = False
     message = "Failed"
 
-    # user_id = request.POST.get('id') if request.POST.get('id') != "" else None
-    user_id = request.POST.get('user_id') if request.POST.get('user_id') else None
-
-    # if user_id:
-    #     user = User.objects.get(id=user_id)
-    #     user.user_id = request.POST.get('user_id')
-    #     user.username = request.POST.get('username')
-    #     user.save()
-
-    #     done = True
-    #     message = "Success"
+    user_id = request.POST.get('id') if request.POST.get('id') != "" else None
+   
     if user_id:
-        user = Account.objects.get(id=types_id)
+        user = Account.objects.get(id=user_id)
     else:
         user = Account()
 
@@ -65,8 +50,7 @@ def delete(request):
     done = False
     message = "Failed"
 
-    # user_id = request.GET.get('id') if request.GET.get('id') else None
-    user_id = request.GET.get('id')
+    user_id = request.GET.get('id') if request.GET.get('id') else None
 
     if user_id:
         user = Account.objects.filter(id=user_id).first()
