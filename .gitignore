@@ -12,3 +12,5 @@ csidjango/lists/__pycache__/*
 csidjango/schedules/__pycache__/*
 
 csidjango/db.sqlite3
+
+/__pycache__/
