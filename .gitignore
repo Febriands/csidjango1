@@ -1,8 +1,8 @@
 .vscode/*
 myvenv/*
  
-csidjango/media/
-!csidjango/media/base_pics/*
+csidjango/media/*
+!csidjango/media/base_pics/
 
 csidjango/csidjango/__pycache__/*
 csidjango/accounts/__pycache__/*
