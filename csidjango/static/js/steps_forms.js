@@ -13,8 +13,8 @@ $(document).ready(function(){
                 var i = 1;
                 data.forEach(function(item) {
                     var actions = `
-                        <button type="button" class="btn btn-warning action-edit form" id="`+ item.pk +`"><i class="fa fa-edit"></i> Ubah</button>
-                        <button type="button" class="btn btn-danger action-delete form" id="`+ item.pk +`"><i class="fa fa-trash"></i> Hapus</button>
+                        <button type="button" class="btn btn-warning btn-sm action-edit form" id="`+ item.pk +`"><i class="fa fa-edit"></i> Ubah</button>
+                        <button type="button" class="btn btn-danger btn-sm action-delete form" id="`+ item.pk +`"><i class="fa fa-trash"></i> Hapus</button>
                     `;
 
                     var type = "";
