@@ -5,19 +5,20 @@ $(document).ready(function(){
         $.get("/api/user_list/", function (result) {
             var rows = [];
             var data = JSON.parse(result.result);
+            // var data = result.result;
             
             if(result.done){
                 var i = 1;
                 data.forEach(function(item) {
                     var actions = `
-                        <button type="button" class="btn btn-primary action-detail" id="`+ item.pk +`"><i class="fa fa-search"></i> Profile</button>
-                        <button type="button" class="btn btn-warning action-edit" id="`+ item.pk +`"><i class="fa fa-edit"></i> Ubah</button>
-                        <button type="button" class="btn btn-danger action-delete" id="`+ item.pk +`"><i class="fa fa-trash"></i> Hapus</button>
+                        <button type="button" class="btn btn-primary action-detail btn-xs" id="`+ item.pk +`"><i class="fa fa-search"></i> Profile</button>
+                        <button type="button" class="btn btn-warning action-edit btn-xs" id="`+ item.pk +`"><i class="fa fa-edit"></i> Ubah</button>
+                        <button type="button" class="btn btn-danger action-delete btn-xs" id="`+ item.pk +`"><i class="fa fa-trash"></i> Hapus</button>
                     `;
 
                     rows.push([
                         i++,
-                        item.fields.name,
+                        item.fields.name,                                               
                         actions,
                     ]);
                 });
@@ -57,8 +58,8 @@ $(document).ready(function(){
     $(document).on("click",".action-edit",function () {
         $.get("/api/user_list/?id="+this.id, function (result) {
             var data = JSON.parse(result.result);
-            $("#user_list_id").val(data[0].pk);
-            $("#user_list_name").val(data[0].fields.name);
+            $("#user_id").val(data[0].pk);
+            $("#user_name").val(data[0].fields.name);            
 
             $(".modal.fade.bs-example-modal-sm").modal('show');
         });

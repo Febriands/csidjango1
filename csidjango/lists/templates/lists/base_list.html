@@ -12,42 +12,40 @@
 {% endblock stylesheets %}
 
 {% block content %}
-  <div class="right_col" role="main">
-    <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-          <div class="x_title">
-            {% block page_title %}
-            
-            {% endblock page_title %}            
-            <div class="clearfix"></div>
-          </div>
+<div>
 
-          <div class="x_content">            
-            {% block datatable_table %}
-
-            {% endblock datatable_table %}            
+  <div class="right_col" role="main">    
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              {% block table_title %}
+                        
+              {% endblock table_title %}
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              {% block datatable_table %}
+              
+              {% endblock datatable_table %}
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 
-
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-plus"></i> Tambah Jenis Sertifikasi</button> -->
-  
   <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
-      <div class="modal-content">
+      <div class="modal-content">        
         {% block content_modal %}
-
+        
         {% endblock content_modal %}
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="saveTypes">Save changes</button>
-        </div> -->
       </div>
-    </div>  
+    </div>
+  </div>  
+
+</div>
 {% endblock content %}
 
 {% block javascripts %}
@@ -68,9 +66,7 @@
   <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
   <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
   <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>  
-  
   {% block datatable_js %}
 
-  {% endblock datatable_js %}
-  
+  {% endblock datatable_js %}  
 {% endblock javascripts %}

@@ -1,11 +1,16 @@
-from django.views.generic import ListView
+from django.shortcuts import render
+from django.views.generic import ListView, TemplateView
 from accounts.models import User
 
 # Create your views here.
-class UserListView(ListView):
-	template_name = "lists/user.html"
-	queryset = User.objects.all().order_by('id')
-	context_object_name = 'users'
+
+# class UserListView(TemplateView):
+# 	template_name = "lists/user.html"
+	# queryset = User.objects.all().order_by('id')
+	# context_object_name = 'users'
+
+def user_list(request):
+    return render(request, "lists/user.html")
 
 class OrganisasiListView(ListView):
 	template_name = "lists/organisasi.html"
