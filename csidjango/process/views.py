@@ -34,9 +34,9 @@ def details(request, cert_id):
     if len(steps) > 0:
         active = steps[0].id
 
-    for step in steps:
-        if not step.validated:
-            active = step.id
+        for step in steps:
+            if not step.validated:
+                active = step.id
 
     return render(request, "process/details.html", {
         "certifications": steps[0].certifications.id,
