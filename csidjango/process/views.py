@@ -31,7 +31,8 @@ def certifications(request):
 
 def details(request, cert_id):
     steps = CertificationsSteps.objects.filter(certifications_id=cert_id).order_by('-steps_id')
-    active = steps[0].id
+    if len(steps) > 0:
+        active = steps[0].id
 
     for step in steps:
         if not step.validated:

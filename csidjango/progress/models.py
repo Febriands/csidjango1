@@ -81,7 +81,8 @@ class FilesProgressCertifications(models.Model):
         '5.6':files_laporan_audit_tahap_2,        
         '5.7':files_verifikasi_ketidaksesuaian_tahap_2,        
         '5.8':files_buku_harian_auditor,        
-        '5.9':files_pemantauan_lapangan_personnel_sertifikasi,        
+        '5.9':files_pemantauan_lapangan_personnel_sertifikasi,
+        '5.10':files_keterangan_bebas_konflik_kepentingan        
     }
     tahap_6 = {
         '6.1':files_notifikasi_tim_evaluasi,
@@ -108,7 +109,8 @@ class FilesProgressCertifications(models.Model):
         '2.6_suv':files_laporan_audit_tahap_suv,        
         '2.7_suv':files_verifikasi_ketidaksesuaian_tahap_suv,        
         '2.8_suv':files_buku_harian_auditor_suv,        
-        '2.9_suv':files_pemantauan_lapangan_personnel_sertifikasi_suv
+        '2.9_suv':files_pemantauan_lapangan_personnel_sertifikasi_suv,
+        '2.10_suv':files_keterangan_bebas_konflik_kepentingan_suv
     }
     tahap_3_suv = {
         '3.1_suv':files_notifikasi_tim_evaluasi_suv,
