@@ -44,6 +44,7 @@ AUTH_USER_MODEL = 'accounts.User'
 # Application definition
 
 # pip install list{
+    # pip install mysqlclient
     # pip install pillow
     # pip install django-extensions
     # pip install pyparsing pydot
