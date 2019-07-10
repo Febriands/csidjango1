@@ -699,27 +699,27 @@ function init_chart_doughnut() {
             tooltipFillColor: "rgba(51, 51, 51, 0.55)",
             data: {
                 labels: [
-                    "Symbian",
-                    "Blackberry",
-                    "Other",
-                    "Android",
-                    "IOS"
+                    "Produk",
+                    "Mutu",
+                    "Lingkungan",
+                    "Keselamatan",
+                    "Industri Hijau"
                 ],
                 datasets: [{
-                    data: [15, 20, 30, 10, 30],
+                    data: [60, 20, 10, 7, 3],
                     backgroundColor: [
-                        "#BDC3C7",
-                        "#9B59B6",
-                        "#E74C3C",
+                        "#3498DB",
                         "#26B99A",
-                        "#3498DB"
+                        "#9B59B6",
+                        "#BDC3C7",
+                        "#E74C3C",
                     ],
                     hoverBackgroundColor: [
-                        "#CFD4D8",
-                        "#B370CF",
-                        "#E95E4F",
+                        "#49A9EA",
                         "#36CAAB",
-                        "#49A9EA"
+                        "#B370CF",
+                        "#CFD4D8",
+                        "#E95E4F",
                     ]
                 }]
             },
