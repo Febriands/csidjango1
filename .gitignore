@@ -10,6 +10,8 @@ csidjango/process/__pycache__/*
 csidjango/progress/__pycache__/*
 csidjango/lists/__pycache__/*
 csidjango/schedules/__pycache__/*
+csidjango/reports/__pycache__/*
+csidjango/documents/__pycache__/*
 
 csidjango/db.sqlite3
 
