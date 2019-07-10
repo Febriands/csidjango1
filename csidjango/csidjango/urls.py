@@ -35,6 +35,8 @@ urlpatterns = [
     path('error404/', views.Error404View.as_view(), name = 'error404'),
     path('accounts/', include('accounts.urls', namespace = 'accounts')),
     path('process/', include('process.urls', namespace = 'process')),
+    path('reports/', include('reports.urls', namespace = 'reports')),
+    path('documents/', include('documents.urls', namespace = 'documents')),
 
     # api user_list
     path('api/user_list/', user_list.index),

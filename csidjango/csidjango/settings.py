@@ -70,6 +70,8 @@ LOCAL_APPS = [
     'progress.apps.ProgressConfig',
     'schedules.apps.SchedulesConfig',
     'lists.apps.ListsConfig',
+    'reports.apps.ReportsConfig',
+    'documents.apps.DocumentsConfig',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

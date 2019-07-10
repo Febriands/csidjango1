@@ -61,16 +61,16 @@
         </li>
         <li><a><i class="fa fa-bar-chart"></i> Laporan <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">            
-            <li><a href="{% url "error404" %}">Laporan Sertifikasi</a></li>            
+            <li><a href="{% url "reports:sertifikasi" %}">Laporan Sertifikasi</a></li>            
             <li><a href="{% url "error404" %}">Laporan SPM</a></li>            
             <li><a href="{% url "error404" %}">Laporan Keuangan</a></li>                                    
           </ul>
         </li>
         <li><a><i class="fa fa-file"></i> Document <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="{% url "error404" %}">Manual</a></li>            
-            <li><a href="{% url "error404" %}">Prosedur</a></li>            
-            <li><a href="{% url "error404" %}">Form</a></li>            
+            <li><a href="{% url "documents:manual" %}">Manual</a></li>            
+            <li><a href="{% url "documents:prosedur" %}">Prosedur</a></li>            
+            <li><a href="{% url "documents:form" %}">Form</a></li>            
           </ul>
         </li>
         <li><a href="{% url "process:types" %}"><i class="fa fa-cog"></i> Manage </a></li>                
