@@ -50,6 +50,9 @@ AUTH_USER_MODEL = 'accounts.User'
     # pip install pyparsing pydot
     # pip install django-cleanup
     # pip install requests
+    # pip install djangorestframework
+    # pip install markdown       # Markdown support for the browsable API.
+    # pip install django-filter  # Filtering support
 # }
 
 DJANGO_APPS = [
@@ -63,6 +66,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'django_extensions',    
     'django_cleanup.apps.CleanupConfig',
+    'rest_framework',
 ]
 LOCAL_APPS = [
     'accounts.apps.AccountsConfig',
@@ -106,6 +110,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'csidjango.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],    
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

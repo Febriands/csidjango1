@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from . import models
 
+from rest_framework import viewsets
+from . import serializers
+
 # Create your views here.
 def document_manual(request):
     manuals = models.Manual.objects.all()
@@ -13,3 +16,24 @@ def document_prosedur(request):
 def document_form(request):
     forms = models.Form.objects.all()
     return render(request, "documents/form.html", {'forms': forms})
+
+class ManualViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = models.Manual.objects.all().order_by('id')
+    serializer_class = serializers.ManualSerializer
+
+class ProcedureViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = models.Procedure.objects.all().order_by('id')
+    serializer_class = serializers.ProcedureSerializer
+
+class FormViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = models.Form.objects.all().order_by('id')
+    serializer_class = serializers.FormSerializer
