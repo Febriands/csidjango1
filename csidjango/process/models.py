@@ -3,8 +3,10 @@ from accounts.models import User
 
 # Create your models here.
 
+
 class Types(models.Model):
     name = models.CharField(max_length=150)
+    active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -37,6 +39,7 @@ class StepsForms(models.Model):
     )
     form_type = models.IntegerField(choices=form_type_choices, default=1)
     name = models.CharField(max_length=150)
+    tooltip = models.TextField()
 
     def __str__(self):
         return self.name
@@ -45,6 +48,7 @@ class StepsForms(models.Model):
 class OfflineDocuments(models.Model):
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
+    tooltip = models.TextField()
 
     def __str__(self):
         return self.name
