@@ -5,7 +5,7 @@ $(document).ready(function(){
     // FORMS
 
     var load_table_form = function (){
-        $.get("/api/forms/"+steps_id, function (result) {
+        $.get("/api/forms/"+sections_id, function (result) {
             var rows = [];
             var data = JSON.parse(result.result);
             
@@ -34,6 +34,7 @@ $(document).ready(function(){
                         i++,
                         item.fields.name,
                         type,
+                        item.fields.tooltip,
                         actions,
                     ]);
                 });
@@ -72,10 +73,11 @@ $(document).ready(function(){
     });
 
     $(document).on("click",".action-edit.form",function () {
-        $.get("/api/forms/"+steps_id+"?id="+this.id, function (result) {
+        $.get("/api/forms/"+sections_id+"?id="+this.id, function (result) {
             var data = JSON.parse(result.result);
             $("#forms_id").val(data[0].pk);
             $("#steps_forms_name").val(data[0].fields.name);
+            $("#steps_forms_tooltip").val(data[0].fields.tooltip);
             $("#form_type option[value="+data[0].fields.form_type+"]").prop('selected', true);
             $("#form_type").prop('disabled', true);
 
@@ -106,7 +108,7 @@ $(document).ready(function(){
     // DOCUMENTS
     
     var load_table_documents = function (){
-        $.get("/api/docs/"+steps_id, function (result) {
+        $.get("/api/docs/"+sections_id, function (result) {
             var rows = [];
             var data = JSON.parse(result.result);
             
@@ -121,6 +123,7 @@ $(document).ready(function(){
                     rows.push([
                         i++,
                         item.fields.name,
+                        item.fields.tooltip,
                         actions,
                     ]);
                 });
@@ -154,11 +157,12 @@ $(document).ready(function(){
     });
 
     $(document).on("click",".action-edit.document",function () {
-        $.get("/api/docs/"+steps_id+"?id="+this.id, function (result) {
+        $.get("/api/docs/"+sections_id+"?id="+this.id, function (result) {
             console.log(result);
             var data = JSON.parse(result.result);
             $("#document_id").val(data[0].pk);
             $("#offline_documents_name").val(data[0].fields.name);
+            $("#offline_documents_tooltip").val(data[0].fields.tooltip);
 
             $("#modal_document").modal('show');
         });

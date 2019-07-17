@@ -5,7 +5,7 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Kelengkapan Tahap {{ steps_name }}</h3>
+          <h3>Kelengkapan Tahap Bagian {{ sections_title }}</h3>
         </div>
 
       <div class="clearfix"></div>
@@ -27,6 +27,7 @@
                     <th>No.</th>
                     <th>Nama</th>
                     <th>Jenis Form</th>
+                    <th>Keterangan</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -54,6 +55,7 @@
                   <tr>
                     <th>No.</th>
                     <th>Nama</th>
+                    <th>Keterangan</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
@@ -82,7 +84,7 @@
         <div class="modal-body">
           <!-- <h4>Text in a modal</h4> -->
           <form id="form_steps_forms" data-parsley-validate class="form-horizontal form-label-left">
-            <input type='hidden' name='steps_id' id="steps_id" value='{{ steps_id }}'/>
+            <input type='hidden' name='sections_id' value='{{ sections_id }}'/>
             <input type='hidden' name='id' id="forms_id" value=''/>
             <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}'/>
             <div class="form-group">
@@ -102,11 +104,18 @@
                 </select>
               </div>
             </div>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Ket.
+              </label>
+              <div class="col-md-10 col-sm-10 col-xs-12">
+                <textarea name="tooltip" id="steps_forms_tooltip" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+              </div>
+            </div>
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-success btn-sm" id="saveSteps">Simpan</button>
+                <button type="submit" class="btn btn-success btn-sm" id="saveForm">Simpan</button>
               </div>
             </div>
           </form>
@@ -126,12 +135,12 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
           </button>
-          <h4 class="modal-title" id="myModalLabel2">Tambah Dokumen</h4>
+          <h4 class="modal-title" id="myModalLabel3">Tambah Dokumen</h4>
         </div>
         <div class="modal-body">
           <!-- <h4>Text in a modal</h4> -->
           <form id="form_offline_documents" data-parsley-validate class="form-horizontal form-label-left">
-            <input type='hidden' name='steps_id' id="steps_id" value='{{ steps_id }}'/>
+            <input type='hidden' name='sections_id' value='{{ sections_id }}'/>
             <input type='hidden' name='id' id="document_id" value=''/>
             <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}'/>
             <div class="form-group">
@@ -141,11 +150,18 @@
                 <input type="text" name="name" id="offline_documents_name" required="required" class="form-control col-md-7 col-xs-12">
               </div>
             </div>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Ket.
+              </label>
+              <div class="col-md-10 col-sm-10 col-xs-12">
+                <textarea name="tooltip" id="offline_documents_tooltip" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+              </div>
+            </div>
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-success btn-sm" id="saveSteps">Simpan</button>
+                <button type="submit" class="btn btn-success btn-sm" id="saveDocs">Simpan</button>
               </div>
             </div>
           </form>
@@ -166,6 +182,6 @@
   <!-- Custom JS -->
   <script src="/static/js/steps_forms.js"></script>
   <script>
-    var steps_id = "{{ steps_id }}";
+    var sections_id = "{{ sections_id }}";
   </script>
 {% endblock javascripts %}

@@ -23,6 +23,7 @@ from django.conf import settings
 from lists.controllers import user_list
 from process.controllers import types
 from process.controllers import steps
+from process.controllers import sections
 from process.controllers import forms
 from process.controllers import offline_documents as docs
 from process.controllers import certifications
@@ -45,19 +46,25 @@ urlpatterns = [
     path('api/types/', types.index),
     path('api/types/save', types.save),
     path('api/types/delete', types.delete),
+    path('api/types/duplicate', types.duplicate),
 
     # api steps
     path('api/steps/<int:types_id>/', steps.index),
     path('api/steps/save', steps.save),
     path('api/steps/delete', steps.delete),
 
+    # api steps sections
+    path('api/sections/<int:steps_id>/', sections.index),
+    path('api/sections/save', sections.save),
+    path('api/sections/delete', sections.delete),
+
     # api steps forms
-    path('api/forms/<int:steps_id>/', forms.index),
+    path('api/forms/<int:sections_id>/', forms.index),
     path('api/forms/save', forms.save),
     path('api/forms/delete', forms.delete),
 
     # api offline documents forms
-    path('api/docs/<int:steps_id>/', docs.index),
+    path('api/docs/<int:sections_id>/', docs.index),
     path('api/docs/save', docs.save),
     path('api/docs/delete', docs.delete),
 

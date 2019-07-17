@@ -7,7 +7,7 @@ from django.core import serializers
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
-from process.models import Steps, StepsForms, OfflineDocuments, Certifications, CertificationsSteps, CertificationsDetails, CertificationsOfflineDocuments
+from process.models import Steps, StepsSections, StepsForms, OfflineDocuments, Certifications, CertificationsSteps, CertificationsDetails, CertificationsOfflineDocuments
 from accounts.models import User
 
 def index(request):
@@ -68,23 +68,27 @@ def save(request):
             c_steps.certifications = certifications
             c_steps.steps = step
             c_steps.save()
-        
-            forms = StepsForms.objects.filter(steps=step)
 
-            for form in forms:
-                c_details = CertificationsDetails()
-                c_details.certifications_steps = c_steps
-                c_details.steps_forms = form
-                c_details.save()
-                
+            sections = StepsSections.objects.filter(steps=step)
 
-            documents = OfflineDocuments.objects.filter(steps=step)
+            for section in sections:
+                forms = StepsForms.objects.filter(section=section)
 
-            for document in documents:
-                c_document = CertificationsOfflineDocuments()
-                c_document.certifications_steps = c_steps
-                c_document.offline_documents = document
-                c_document.save()
+                for form in forms:
+                    c_details = CertificationsDetails()
+                    c_details.certifications_steps = c_steps
+                    c_details.steps_forms = form
+                    c_details.steps_sections = section
+                    c_details.save()
+
+                documents = OfflineDocuments.objects.filter(section=section)
+
+                for document in documents:
+                    c_document = CertificationsOfflineDocuments()
+                    c_document.certifications_steps = c_steps
+                    c_document.offline_documents = document
+                    c_document.steps_sections = section
+                    c_document.save()
             
         done = True
         message = "Success"

@@ -36,9 +36,10 @@ def save(request):
 
     steps.types_id = request.POST.get('types_id')
     steps.name = request.POST.get('name')
-    if steps.save():
-        done = True
-        message = "Success"
+    steps.save()
+
+    done = True
+    message = "Success"
     
     return JsonResponse({
         'done': done,

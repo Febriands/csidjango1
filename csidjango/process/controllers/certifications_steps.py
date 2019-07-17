@@ -10,37 +10,47 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 
-from process.models import CertificationsSteps, CertificationsDetails, StepsForms, CertificationsOfflineDocuments, OfflineDocuments
+from process.models import CertificationsSteps, CertificationsDetails, StepsForms, StepsSections, CertificationsOfflineDocuments, OfflineDocuments
 
 def index(request, steps_id):
     form_details = []
     document_list = []
+    sections_list = {}
 
     if steps_id:
         steps = CertificationsSteps.objects.filter(id=steps_id).first()
-
         details = CertificationsDetails.objects.filter(certifications_steps=steps)
 
         for item in details:
             form_details.append({
+                "section": item.steps_sections_id,
                 "field": item.steps_forms_id,
                 "type": item.steps_forms.form_type,
                 "name": item.steps_forms.name,
-                "value": item.value
+                "value": item.value,
+                "tooltip": item.steps_forms.tooltip,
             })
+
+            sections_list[item.steps_sections_id] = {
+                "title": item.steps_sections.title,
+                "description": item.steps_sections.description
+            }
 
         docs = CertificationsOfflineDocuments.objects.filter(certifications_steps=steps)
 
         for item in docs:
+            print(item)
             if item.files_path:
                 path = item.files_path
             else:
                 path = None
 
             document_list.append({
+                "section": item.steps_sections_id,
                 "field": item.offline_documents_id,
                 "name": item.offline_documents.name,
-                "path": path
+                "path": path,
+                "tooltip": item.offline_documents.tooltip
             })
     
     return JsonResponse({
@@ -48,6 +58,7 @@ def index(request, steps_id):
         'result': {
             "details": form_details,
             "docs": document_list,
+            "sections": sections_list,
         }
     })
 
@@ -62,23 +73,26 @@ def save(request):
         steps = CertificationsSteps.objects.filter(id=steps_id).first()
 
         if steps:
-            forms = StepsForms.objects.filter(steps=steps.steps)
+            sections = StepsSections.objects.filter(steps=steps.steps)
 
-            for item in forms:
-                value = request.POST.get(str(item.id)) if request.POST.get(str(item.id)) else None
+            for section in sections:
+                forms = StepsForms.objects.filter(section=section)
 
-                if value:
-                    details = CertificationsDetails.objects.filter(certifications_steps=steps, steps_forms=item).first()
+                for item in forms:
+                    value = request.POST.get(str(item.id)) if request.POST.get(str(item.id)) else None
 
-                    if details:
-                        details.value = value
-                        details.save()
+                    if value:
+                        details = CertificationsDetails.objects.filter(certifications_steps=steps, steps_forms=item).first()
 
-                        steps.certifications.updated = time.time()
-                        steps.certifications.save()
+                        if details:
+                            details.value = value
+                            details.save()
 
-                        done = True
-                        message = "Success"
+                            steps.certifications.updated = time.time()
+                            steps.certifications.save()
+
+                            done = True
+                            message = "Success"
     
     return JsonResponse({
         'done': done,
@@ -96,27 +110,30 @@ def save_docs(request):
         steps = CertificationsSteps.objects.filter(id=steps_id).first()
 
         if steps:
-            docs = OfflineDocuments.objects.filter(steps=steps.steps)
+            sections = StepsSections.objects.filter(steps=steps.steps)
 
-            for item in docs:
-                files = request.FILES.getlist(str(item.id)) if request.FILES.getlist(str(item.id)) else None
-                
-                if files:
-                    documents = CertificationsOfflineDocuments.objects.filter(certifications_steps=steps, offline_documents=item).first()
-                    
-                    if documents:
-                        doc = files[0]
-                        filename = item.name + " c-" + str(steps.certifications_id) + " " + str(int(time.time())) + "." + doc.name.split('.')[-1]
-                        default_storage.save(settings.MEDIA_ROOT + "/docs/" + filename, ContentFile(doc.read()))
+            for section in sections:
+                docs = OfflineDocuments.objects.filter(section=section)
 
-                        documents.files_path = filename
-                        documents.save()
+                for item in docs:
+                    files = request.FILES.getlist(str(item.id)) if request.FILES.getlist(str(item.id)) else None
 
-                        steps.certifications.updated = time.time()
-                        steps.certifications.save()
+                    if files:
+                        documents = CertificationsOfflineDocuments.objects.filter(certifications_steps=steps, offline_documents=item).first()
 
-                        done = True
-                        message = "Success"
+                        if documents:
+                            doc = files[0]
+                            filename = item.name + " c-" + str(steps.certifications_id) + " " + str(int(time.time())) + "." + doc.name.split('.')[-1]
+                            default_storage.save(settings.MEDIA_ROOT + "/docs/" + filename, ContentFile(doc.read()))
+
+                            documents.files_path = filename
+                            documents.save()
+
+                            steps.certifications.updated = time.time()
+                            steps.certifications.save()
+
+                            done = True
+                            message = "Success"
 
     return JsonResponse({
         'done': done,

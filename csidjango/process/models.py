@@ -31,8 +31,14 @@ class Steps(models.Model):
         return self.name    
 
 
-class StepsForms(models.Model):
+class StepsSections(models.Model):
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150)
+    description = models.TextField()
+
+
+class StepsForms(models.Model):
+    section = models.ForeignKey(StepsSections, on_delete=models.CASCADE)
     form_type_choices = (
         (0, 'Number'),
         (1, 'Text'),
@@ -46,7 +52,7 @@ class StepsForms(models.Model):
 
 
 class OfflineDocuments(models.Model):
-    steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
+    section = models.ForeignKey(StepsSections, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
     tooltip = models.TextField()
 
@@ -66,6 +72,7 @@ class Certifications(models.Model):
     def __str__(self):
         return self.name
 
+
 class CertificationsSteps(models.Model):
     certifications = models.ForeignKey(Certifications, on_delete=models.CASCADE)
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
@@ -78,10 +85,12 @@ class CertificationsSteps(models.Model):
 class CertificationsDetails(models.Model):
     certifications_steps = models.ForeignKey(CertificationsSteps, on_delete=models.CASCADE)
     steps_forms = models.ForeignKey(StepsForms, on_delete=models.CASCADE)
+    steps_sections = models.ForeignKey(StepsSections, on_delete=models.CASCADE)
     value = models.TextField(default=None, null=True, blank=True)
 
 
 class CertificationsOfflineDocuments(models.Model):
     certifications_steps = models.ForeignKey(CertificationsSteps, on_delete=models.CASCADE)
     offline_documents = models.ForeignKey(OfflineDocuments, on_delete=models.CASCADE)
+    steps_sections = models.ForeignKey(StepsSections, on_delete=models.CASCADE)
     files_path = models.CharField(max_length=200, default=None, null=True, blank=True)
