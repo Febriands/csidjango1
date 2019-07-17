@@ -2,7 +2,7 @@ $(document).ready(function(){
     var table_certifications = $('#table_certifications').DataTable();
 
     var load_types = function (){
-        $.get("/api/types/", function (result) {
+        $.get("/api/types/?active=1", function (result) {
             var rows = [];
             var data = JSON.parse(result.result);
 

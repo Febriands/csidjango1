@@ -12,12 +12,16 @@ $(document).ready(function(){
                     var actions = `
                         <button type="button" class="btn btn-primary btn-sm action-detail" id="`+ item.pk +`"><i class="fa fa-search"></i> Tahap</button>
                         <button type="button" class="btn btn-warning btn-sm action-edit" id="`+ item.pk +`"><i class="fa fa-edit"></i> Ubah</button>
+                        <button type="button" class="btn btn-success btn-sm action-duplicate" id="`+ item.pk +`"><i class="fa fa-copy"></i> Duplikat</button>
                         <button type="button" class="btn btn-danger btn-sm action-delete" id="`+ item.pk +`"><i class="fa fa-trash"></i> Hapus</button>
                     `;
+
+                    var status = item.fields.active ? `<span class="badge bg-green">Aktif</span>` : `<span class="badge bg-red">Tidak Aktif</span>`;
 
                     rows.push([
                         i++,
                         item.fields.name,
+                        status,
                         actions,
                     ]);
                 });
@@ -32,11 +36,36 @@ $(document).ready(function(){
     load_table();
 
     $( "#form_types" ).submit(function( event ) {
+        if($('#types_active div').hasClass("checked")){
+            $('input[name=active]').val(1);
+        }else{
+            $('input[name=active]').val(0);
+        }
+
         var formData = new FormData(this);
         
         $.ajax({
             type: "POST",
             url: "/api/types/save",
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                if(result.done == "Failed"){
+                    alert("Gagal menambahkan jenis sertifikasi");
+                    return false;
+                }
+            }
+        });
+    });
+
+    $( "#form_duplicate" ).submit(function( event ) {
+        var formData = new FormData(this);
+
+        $.ajax({
+            type: "POST",
+            url: "/api/types/duplicate",
             data: formData,
             cache: false,
             processData: false,
@@ -60,7 +89,13 @@ $(document).ready(function(){
             $("#types_id").val(data[0].pk);
             $("#types_name").val(data[0].fields.name);
 
-            $(".modal.fade.bs-example-modal-sm").modal('show');
+            if(data[0].fields.active){
+                $("#types_active div").addClass("checked");
+            }else {
+                $("#types_active div").removeClass("checked");
+            }
+
+            $("#modal_types").modal('show');
         });
     });
     
@@ -78,5 +113,15 @@ $(document).ready(function(){
                 load_table();
             });
         }
+    });
+
+    $(document).on("click",".action-duplicate",function () {
+        $.get("/api/types/?id="+this.id, function (result) {
+            var data = JSON.parse(result.result);
+            $("#duplicate_id").val(data[0].pk);
+            $("#duplicate_name").val(data[0].fields.name);
+
+            $("#modal_duplicate").modal('show');
+        });
     });
 });

@@ -8,13 +8,13 @@ from django.shortcuts import get_object_or_404
 
 from process.models import Steps, OfflineDocuments
 
-def index(request, steps_id):
+def index(request, sections_id):
     doc_id = request.GET.get('id') if request.GET.get('id') else None
     
     if doc_id:
-        docs = OfflineDocuments.objects.filter(id=doc_id, steps_id=steps_id)
+        docs = OfflineDocuments.objects.filter(id=doc_id, section_id=sections_id)
     else:
-        docs = OfflineDocuments.objects.filter(steps_id=steps_id)
+        docs = OfflineDocuments.objects.filter(section_id=sections_id)
     
     docs = serializers.serialize('json', docs)
     return JsonResponse({
@@ -34,11 +34,13 @@ def save(request):
     else:
         docs = OfflineDocuments()
 
-    docs.steps_id = request.POST.get('steps_id')
+    docs.section_id = request.POST.get('sections_id')
     docs.name = request.POST.get('name')
-    if docs.save():
-        done = True
-        message = "Success"
+    docs.tooltip = request.POST.get('tooltip')
+    docs.save()
+
+    done = True
+    message = "Success"
     
     return JsonResponse({
         'done': done,

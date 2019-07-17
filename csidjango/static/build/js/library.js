@@ -19,7 +19,7 @@ var dateConvert = function(timestamp, hms=false){
     return hms ? year+'-'+month+'-'+day+' '+hour+':'+minutes+':'+seconds : year+'-'+month+'-'+day;
 }
 
-var form_builder = function(field, type, label, value){
+var form_builder = function(field, type, label, value, tooltip){
     var tmp_type = "text";
     switch(type){
         case 0:
@@ -31,6 +31,7 @@ var form_builder = function(field, type, label, value){
     }
 
     value = value ? value : "";
+    tooltip = tooltip ? "<br/><small>*) "+ tooltip +"</small>" : "";
 
     var form = `
         <div class="form-group">
@@ -38,15 +39,17 @@ var form_builder = function(field, type, label, value){
                 `+ label +`
             </label>
             <input type="`+ tmp_type +`" name="`+ field +`" required="required" class="form-control col-md-12 col-xs-12" value="`+ value +`">
+            ` + tooltip + `
         </div>
     `;
 
     return form;
 }
 
-var docs_form_builder = function(field, label, current){
+var docs_form_builder = function(field, label, current, tooltip){
     var path = "/media/docs/"+current;
     current = current ? `<a href="` + path +`"><b>` + current + `</b></a>` : "<i>belum ada berkas</i>";
+    tooltip = tooltip ? "<small>*) "+ tooltip +"</small>" : "";
 
     var form = `
         <div class="form-group">
@@ -57,6 +60,7 @@ var docs_form_builder = function(field, label, current){
                 Saat ini: `+ current +`
             </p>
             <input type="file" name="`+ field +`" class="form-control col-md-12 col-xs-12">
+            ` + tooltip + `
         </div>
     `;
 
