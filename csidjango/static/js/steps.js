@@ -15,9 +15,12 @@ $(document).ready(function(){
                         <button type="button" class="btn btn-danger btn-sm action-delete" id="`+ item.pk +`"><i class="fa fa-trash"></i> Hapus</button>
                     `;
 
+                    var status = item.fields.is_survailen ? `<span class="badge bg-orange">Survailen</span>` : `<span class="badge bg-blue">Sertifikasi Awal</span>`;
+
                     rows.push([
                         "Tahap " + item.fields.order,
                         item.fields.name,
+                        status,
                         actions,
                     ]);
                 });
@@ -32,6 +35,12 @@ $(document).ready(function(){
     load_table();
 
     $( "#form_steps" ).submit(function( event ) {
+        if($('#steps_survailen div').hasClass("checked")){
+            $('input[name=survailen]').val(1);
+        }else{
+            $('input[name=survailen]').val(0);
+        }
+
         var formData = new FormData(this);
         
         $.ajax({
@@ -59,6 +68,12 @@ $(document).ready(function(){
             var data = JSON.parse(result.result);
             $("#steps_id").val(data[0].pk);
             $("#steps_name").val(data[0].fields.name);
+
+            if(data[0].fields.is_survailen){
+                $("#steps_survailen div").addClass("checked");
+            }else {
+                $("#steps_survailen div").removeClass("checked");
+            }
 
             $(".modal.fade.bs-example-modal-sm").modal('show');
         });

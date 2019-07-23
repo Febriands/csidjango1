@@ -36,6 +36,7 @@ def save(request):
 
     steps.types_id = request.POST.get('types_id')
     steps.name = request.POST.get('name')
+    steps.is_survailen = request.POST.get('survailen')
     steps.save()
 
     done = True
