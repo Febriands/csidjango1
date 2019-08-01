@@ -1,7 +1,7 @@
 .vscode/*
 myvenv/*
-/__pycache__/
-/migrations/
+**/__pycache__/*
+**/migrations/*
 csidjango/db.sqlite3
 csidjango/media/*
-!csidjango/media/base_pics/
+!csidjango/media/base_pics/*
