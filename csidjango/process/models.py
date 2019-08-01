@@ -26,7 +26,11 @@ class Steps(models.Model):
     types = models.ForeignKey(Types, on_delete=models.CASCADE)
     order = models.IntegerField(default=0)
     name = models.CharField(max_length=150)
-    is_survailen = models.BooleanField(default=False)
+    step_type = models.IntegerField(choices=(
+        (0, "Sertifikasi Awal"),
+        (1, "Survailen 1"),
+        (2, "Survailen 2"),
+    ))
 
     def __str__(self):
         return self.name    
@@ -35,7 +39,7 @@ class Steps(models.Model):
 class StepsSections(models.Model):
     steps = models.ForeignKey(Steps, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
-    description = models.TextField()
+    description = models.TextField(null=True, default=None)
 
 
 class StepsForms(models.Model):
@@ -46,7 +50,7 @@ class StepsForms(models.Model):
     )
     form_type = models.IntegerField(choices=form_type_choices, default=1)
     name = models.CharField(max_length=150)
-    tooltip = models.TextField()
+    tooltip = models.TextField(null=True, default=None)
 
     def __str__(self):
         return self.name
@@ -55,7 +59,7 @@ class StepsForms(models.Model):
 class OfflineDocuments(models.Model):
     section = models.ForeignKey(StepsSections, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
-    tooltip = models.TextField()
+    tooltip = models.TextField(null=True, default=None)
 
     def __str__(self):
         return self.name

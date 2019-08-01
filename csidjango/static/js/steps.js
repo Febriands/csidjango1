@@ -15,7 +15,18 @@ $(document).ready(function(){
                         <button type="button" class="btn btn-danger btn-sm action-delete" id="`+ item.pk +`"><i class="fa fa-trash"></i> Hapus</button>
                     `;
 
-                    var status = item.fields.is_survailen ? `<span class="badge bg-orange">Survailen</span>` : `<span class="badge bg-blue">Sertifikasi Awal</span>`;
+                    var status = "";
+                    switch (item.fields.step_type) {
+                        case 0:
+                            status = `<span class="badge bg-blue">Sertifikasi Awal</span>`;
+                            break;
+                        case 1:
+                            status = `<span class="badge bg-orange">Survailen 1</span>`;
+                            break;
+                        case 2:
+                            status = `<span class="badge bg-orange">Survailen 2</span>`;
+                            break;
+                    }
 
                     rows.push([
                         "Tahap " + item.fields.order,
@@ -69,11 +80,7 @@ $(document).ready(function(){
             $("#steps_id").val(data[0].pk);
             $("#steps_name").val(data[0].fields.name);
 
-            if(data[0].fields.is_survailen){
-                $("#steps_survailen div").addClass("checked");
-            }else {
-                $("#steps_survailen div").removeClass("checked");
-            }
+            $("#step_type").val(data[0].fields.step_type);
 
             $(".modal.fade.bs-example-modal-sm").modal('show');
         });

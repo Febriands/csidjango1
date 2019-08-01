@@ -65,14 +65,15 @@
               <div class="col-md-10 col-sm-10 col-xs-12">
                 <input type="text" name="name" id="steps_name" required="required" class="form-control col-md-7 col-xs-12">
               </div>
-              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="steps_survailen">Surv</label>
-              <input type="hidden" name="survailen">
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="step_type">Tipe</label>
               <div class="col-md-10 col-sm-10 col-xs-12">
-                <div class="checkbox">
-                <label class="" style="padding: 0">
-                <div class="icheckbox_flat-green" id="steps_survailen" style="position: relative;"><input type="checkbox" class="flat" checked="checked" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
-                </label>
-                </div>
+                <select class="form-control" name="step_type" id="step_type" required>
+                  <option value="0">Sertifikasi Awal</option>
+                  <option value="1">Survailen 1</option>
+                  <option value="2">Survailen 2</option>
+                </select>
               </div>
             </div>
             <div class="ln_solid"></div>
