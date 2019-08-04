@@ -2,25 +2,24 @@ from django.db import models
 from django.utils.text import slugify
 
 # Create your models here.
-class Standar(models.Model):
+class Standard(models.Model):
     name = models.CharField(max_length=150)
-    code =  models.CharField(max_length=150)
     date_created = models.DateTimeField(auto_now=True)
     standar_doc = models.FileField(upload_to='standar/', null=True, blank=True)
     slug = models.SlugField(unique=True, blank=True)
 
     def save(self, *args, **kwargs):
-        if self.slug != slugify('%s %s' % (self.name, self.version)):
+        if self.slug != slugify(self.name):
         # Newly created object, so set slug
-            self.slug = slugify('%s %s' % (self.name, self.version))
-        super(Form, self).save(*args, **kwargs)    
+            self.slug = slugify(self.name)
+        super(Standard, self).save(*args, **kwargs)    
        
     def __str__(self):
         return self.name
 
 
 class Manual(models.Model):
-    standar = models.ForeignKey(Standar, related_name='manual_standar', on_delete=models.CASCADE, null=True, blank=True)
+    standar = models.ForeignKey(Standard, related_name='standard_manual', on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=150)
     code =  models.CharField(max_length=150)
     version = models.IntegerField(default=0,)  
@@ -62,8 +61,8 @@ class Procedure(models.Model):
         return self.name
 
 class Form(models.Model):
-    manual = models.ForeignKey(Manual, related_name='form_manual', on_delete=models.CASCADE, null=True, blank=True)
-    procedure = models.ForeignKey(Procedure, related_name='form_procedure', on_delete=models.CASCADE, null=True, blank=True)
+    manual = models.ForeignKey(Manual, related_name='manual_form', on_delete=models.CASCADE, null=True, blank=True)
+    procedure = models.ForeignKey(Procedure, related_name='procedure_form', on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=150)
     code =  models.CharField(max_length=150)
     version = models.IntegerField(default=0)  
