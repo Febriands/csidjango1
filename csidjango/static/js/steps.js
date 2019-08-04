@@ -18,7 +18,7 @@ $(document).ready(function(){
                     var status = "";
                     switch (item.fields.step_type) {
                         case 0:
-                            status = `<span class="badge bg-blue">Sertifikasi Awal</span>`;
+                            status = `<span class="badge bg-blue">Sertifikasi</span>`;
                             break;
                         case 1:
                             status = `<span class="badge bg-orange">Survailen 1</span>`;

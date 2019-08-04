@@ -27,7 +27,7 @@ class Steps(models.Model):
     order = models.IntegerField(default=0)
     name = models.CharField(max_length=150)
     step_type = models.IntegerField(choices=(
-        (0, "Sertifikasi Awal"),
+        (0, "Sertifikasi"),
         (1, "Survailen 1"),
         (2, "Survailen 2"),
     ))
