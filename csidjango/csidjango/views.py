@@ -2,14 +2,23 @@ from django.views.generic import TemplateView, ListView, View
 from process.models import *
 from django.shortcuts import render
 
+from django.shortcuts import redirect
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 class IndexView(TemplateView):
     template_name = "index.html"
 
-class DashboardView(TemplateView):
+class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = "dashboard.html"
 
 class Error404View(TemplateView):
     template_name = "page_404.html"
+
+
+def redirect_view(request):
+    response = redirect('login')
+    return response
 
 # class UserListView(ListView):
 # 	template_name = "lists/user.html"

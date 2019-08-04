@@ -177,3 +177,9 @@ STATIC_ROOT = '/static/assets' #path if using collecstatics
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR #don't use [], error: path should be string bytes or os.pathlike not list
+
+from django.urls import reverse_lazy
+LOGIN_URL = reverse_lazy('login')
+
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'login'

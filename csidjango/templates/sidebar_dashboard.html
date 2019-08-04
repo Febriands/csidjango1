@@ -1,6 +1,6 @@
 <div class="left_col scroll-view">
   <div class="navbar nav_title" style="border: 0;">
-    <a href="{% url 'index' %}" class="site_title"><i class="fa fa-spinner"></i> <span>CSI</span></a>
+    <a href="{% url 'dashboard' %}" class="site_title"><i class="fa fa-spinner"></i> <span>SIFION</span></a>
   </div>
 
   <div class="clearfix"></div>
@@ -12,7 +12,7 @@
     </div>
     <div class="profile_info">
       <span>Welcome,</span>
-      <h2>{{ user.get_full_name }}</h2>
+      <h2>{{ user.username }}</h2>
     </div>
   </div>
   <!-- /menu profile quick info -->
@@ -25,17 +25,7 @@
       <h3>Menu</h3>
       <ul class="nav side-menu">        
         <li><a href="{% url "dashboard" %}"><i class="fa fa-tachometer"></i> Dashboard </a></li>          
-        <li><a href="{% url "process:certifications" %}"><i class="fa fa-laptop"></i> Sertifikasi </a></li>          
-        {% comment %} <li><a><i class="fa fa-laptop"></i> Sertifikasi <span class="fa fa-chevron-down"></span></a>
-          <ul class="nav child_menu">
-            <li><a href="{% url "error404" %}">Sistem Manajemen Mutu</a></li>            
-            <li><a href="{% url "error404" %}">Sistem Manajemen Lingkungan</a></li>            
-            <li><a href="{% url "error404" %}">Sistem Manajemen Keselamatan</a></li>            
-            <li><a href="{% url "error404" %}">Industri Hijau</a></li>            
-            <li><a href="{% url "error404" %}">Produk</a></li>            
-            <li><a href="{% url "error404" %}">Personel</a></li>
-          </ul>
-        </li> {% endcomment %}
+        <li><a href="{% url "process:certifications" %}"><i class="fa fa-laptop"></i> Sertifikasi </a></li>
         <li><a><i class="fa fa-tasks"></i> Progres <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{% url "progress:sertifikasi" %}">Progres Sertifikasi</a></li>            
@@ -74,7 +64,8 @@
             <li><a href="{% url "documents:form" %}">Form</a></li>            
           </ul>
         </li>
-        <li><a href="{% url "process:types" %}"><i class="fa fa-cog"></i> Manage </a></li>                
+        <li><a href="{% url "process:types" %}"><i class="fa fa-cog"></i> Manage </a></li>             
+        <li><a href="{% url 'admin:index' %}"><i class="fa fa-database"></i> Database </a></li>               
       </ul>
     </div>
     <div class="menu_section">

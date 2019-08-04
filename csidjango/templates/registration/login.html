@@ -1,0 +1,45 @@
+{% extends "accounts/base.html" %}
+
+{% block title %} Login {% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+{% endblock stylesheets %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block body %}
+  <div>
+    <div class="login_wrapper">      
+      <div class="animate form login_form">
+        <section class="login_content">
+          <form method="post">
+          <h1>Login Form</h1>            
+            {% csrf_token %}
+            <div>
+              <input type="text" class="form-control" name="username" id="inputUsername" placeholder="Username" required="" />
+            </div>
+            <div>
+              <input type="password" class="form-control" name="password" id="inputPass" placeholder="Password" required="" />
+            </div>
+            <button type="submit">Login</button>            
+            <div class="clearfix"></div>
+            <br />
+            <div>
+            <a href="{% url 'login' %}"><h1>Sifion | Sistem Sertifikasi Online</h1></a>                
+            <p>©2019 All Rights Reserved. Made in "Forty Thousand Feet Above The Sea" by B4T. Privacy and Terms</p>
+            </div>            
+          </form>
+        </section>
+      </div>      
+    </div>
+  </div>
+{% endblock body %}
+
+
+
+
+
+
+
+

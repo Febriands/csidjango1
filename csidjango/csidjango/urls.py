@@ -13,28 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from . import views
-
-from django.conf.urls.static import static
+from django import views
 from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
+from django.views.generic import RedirectView
 
 from lists.controllers import user_list
-from process.controllers import types
-from process.controllers import steps
-from process.controllers import sections
-from process.controllers import forms
+from process.controllers import certifications, certifications_steps, forms
 from process.controllers import offline_documents as docs
-from process.controllers import certifications
-from process.controllers import certifications_steps
+from process.controllers import sections, steps, types
+
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.IndexView.as_view(), name = 'index'),
+    # path('', views.IndexView.as_view(), name = 'index'),
+    path('', views.redirect_view),
     path('dashboard/', views.DashboardView.as_view(), name = 'dashboard'),
     path('error404/', views.Error404View.as_view(), name = 'error404'),
     path('accounts/', include('accounts.urls', namespace = 'accounts')),
+    path('users/', include('django.contrib.auth.urls')),
     path('process/', include('process.urls', namespace = 'process')),
     path('reports/', include('reports.urls', namespace = 'reports')),
     path('documents/', include('documents.urls', namespace = 'documents')),
