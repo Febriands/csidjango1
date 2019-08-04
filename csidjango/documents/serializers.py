@@ -11,17 +11,21 @@ class StandardSerializer(serializers.HyperlinkedModelSerializer):
 class ManualSerializer(serializers.HyperlinkedModelSerializer):
     manual_procedure = serializers.StringRelatedField(many=True)
     manual_form = serializers.StringRelatedField(many=True)
+    standar = serializers.StringRelatedField()
     class Meta:
         model = models.Manual
-        fields = ('id', 'name', 'code', 'version', 'date_created', 'manual_procedure', 'manual_form')
+        fields = ('id', 'name', 'code', 'version', 'date_created', 'standar', 'manual_procedure', 'manual_form')
 
 class ProcedureSerializer(serializers.HyperlinkedModelSerializer):
     procedure_form = serializers.StringRelatedField(many=True)
+    manual = serializers.StringRelatedField()
     class Meta:
         model = models.Procedure
-        fields = ('id', 'name', 'code', 'version', 'date_created', 'procedure_form')
+        fields = ('id', 'name', 'code', 'version', 'date_created', 'manual', 'procedure_form')
 
 class FormSerializer(serializers.HyperlinkedModelSerializer):
+    manual = serializers.StringRelatedField()
+    procedure = serializers.StringRelatedField()
     class Meta:
         model = models.Form
-        fields = ('id', 'name', 'code', 'version', 'date_created')
+        fields = ('id', 'name', 'code', 'version', 'date_created', 'manual', 'procedure')
