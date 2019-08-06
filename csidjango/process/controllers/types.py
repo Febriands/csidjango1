@@ -91,6 +91,7 @@ def duplicate(request):
             new_steps.types = new_types
             new_steps.order = step.order
             new_steps.name = step.name
+            new_steps.step_type = step.step_type
             new_steps.save()
 
             sections = StepsSections.objects.filter(steps=step)
