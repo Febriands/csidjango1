@@ -122,11 +122,15 @@ def save_docs(request):
                         documents = CertificationsOfflineDocuments.objects.filter(certifications_steps=steps, offline_documents=item).first()
 
                         if documents:
-                            doc = files[0]
-                            filename = item.name + " c-" + str(steps.certifications_id) + " " + str(int(time.time())) + "." + doc.name.split('.')[-1]
-                            default_storage.save(settings.MEDIA_ROOT + "/docs/" + filename, ContentFile(doc.read()))
+                            file_list = []
+                            i = 1
+                            for doc in files:
+                                filename = item.name + " " + str(i) + " (doc-" + str(steps.certifications_id) + "-" + str(int(time.time())) + ")." + doc.name.split('.')[-1]
+                                default_storage.save(settings.MEDIA_ROOT + "/docs/" + filename, ContentFile(doc.read()))
+                                file_list.append(filename)
+                                i += 1
 
-                            documents.files_path = filename
+                            documents.files_path = "|".join(file_list)
                             documents.save()
 
                             steps.certifications.updated = time.time()

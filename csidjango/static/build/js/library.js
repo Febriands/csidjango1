@@ -45,10 +45,16 @@ var form_builder = function(field, type, label, value, tooltip, options=null){
         form += `<input type="` + tmp_type + `" name="` + field + `" required="required" class="form-control col-md-12 col-xs-12" value="` + value + `">`;
     }else if(type === 2){
         options.forEach(function (item) {
+            var selected = "";
+
+            if(value == item){
+                selected = "checked";
+            }
+
             form += `
                 <div class="radio">
                     <label>
-                        <input type="radio" value="` + item + `" name="` + field.toString() + `"> `+ item +`
+                        <input type="radio" value="` + item + `" name="` + field.toString() + `" `+ selected +`> `+ item +`
                     </label>
                 </div>
             `;
@@ -59,8 +65,14 @@ var form_builder = function(field, type, label, value, tooltip, options=null){
         `;
 
         options.forEach(function (item) {
+            var selected = "";
+
+            if(value == item){
+                selected = "selected";
+            }
+
             form += `
-                <option value="`+ item +`">`+ item +`</option>
+                <option value="`+ item +`" `+ selected +`>`+ item +`</option>
             `;
         });
 
@@ -77,8 +89,21 @@ var form_builder = function(field, type, label, value, tooltip, options=null){
 }
 
 var docs_form_builder = function(field, label, current, tooltip){
-    var path = "/media/docs/"+current;
-    current = current ? `<a href="` + path +`"><b>` + current + `</b></a>` : "<i>belum ada berkas</i>";
+    var files = "";
+    if(current){
+        var current_file_list = current.split("|");
+        var file_list = [];
+
+        current_file_list.forEach(function (item) {
+            var path = "/media/docs/"+item;
+            file_list.push(`<a href="` + path +`" download><b>` + item + `</b></a>`);
+        });
+
+        files = file_list.join("<br/>")
+    }else{
+        files = "<i>belum ada berkas</i>";
+    }
+
     tooltip = tooltip ? "<small>*) "+ tooltip +"</small>" : "";
 
     var form = `
@@ -87,9 +112,9 @@ var docs_form_builder = function(field, label, current, tooltip){
                 `+ label +`
             </label>
             <p>
-                Saat ini: `+ current +`
+                Saat ini: <br/>`+ files +`
             </p>
-            <input type="file" name="`+ field +`" class="form-control col-md-12 col-xs-12">
+            <input type="file" name="`+ field +`" class="form-control col-md-12 col-xs-12" multiple>
             ` + tooltip + `
         </div>
     `;
