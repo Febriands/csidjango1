@@ -110,6 +110,8 @@ def duplicate(request):
                     new_forms.section = new_section
                     new_forms.form_type = form.form_type
                     new_forms.name = form.name
+                    new_forms.tooltip = form.tooltip
+                    new_forms.options = form.options
                     new_forms.save()
 
                 documents = OfflineDocuments.objects.filter(section=section)
@@ -118,6 +120,7 @@ def duplicate(request):
                     new_documents = OfflineDocuments()
                     new_documents.section = new_section
                     new_documents.name = document.name
+                    new_documents.tooltip = document.tooltip
                     new_documents.save()
 
         done = True
