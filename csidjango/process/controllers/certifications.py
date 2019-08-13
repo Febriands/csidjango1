@@ -15,8 +15,14 @@ def index(request):
     data = []
 
     for item in certifications:
-        progress_text = str(item.completed) + "/" + str(item.left)
-        progress = round(item.completed / item.left, 2)
+        total = CertificationsDetails.objects.filter(certifications_steps__certifications=item).count()
+        complete = CertificationsDetails.objects.filter(certifications_steps__certifications=item, value__isnull=False).count()
+
+        progress_text = str(complete) + "/" + str(total)
+        if total > 0:
+            progress = round(complete / total * 100)
+        else:
+            progress = 0
 
         data.append({
             "id": item.id,

@@ -37,10 +37,8 @@ $(document).ready(function(){
                     var progress = `
                         <div>
                             <p>`+ item.progress_text +`</p>
-                            <div class="">
-                            <div class="progress progress_md" style="width: 100%;">
-                                <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="`+ item.progress +`" aria-valuenow="100" style="width: 100%;"></div>
-                            </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="`+ item.progress +`" aria-valuemin="0" aria-valuemax="100" style="width: `+ item.progress +`%;"></div>
                             </div>
                         </div>
                     `;
