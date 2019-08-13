@@ -42,7 +42,7 @@ var form_builder = function(field, type, label, value, tooltip, options=null){
 
 
     if(type === 0 || type === 1) {
-        form += `<input type="` + tmp_type + `" name="` + field + `" required="required" class="form-control col-md-12 col-xs-12" value="` + value + `">`;
+        form += `<input type="` + tmp_type + `" name="` + field + `" class="form-control col-md-12 col-xs-12" value="` + value + `">`;
     }else if(type === 2){
         options.forEach(function (item) {
             var selected = "";
