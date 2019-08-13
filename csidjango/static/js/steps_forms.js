@@ -1,6 +1,7 @@
 $(document).ready(function(){
     var table_forms = $('#table_forms').DataTable();
     var table_documents = $('#table_documents').DataTable();
+    $('#option_field').hide();
 
     // FORMS
 
@@ -181,6 +182,15 @@ $(document).ready(function(){
 
                 load_table_documents();
             });
+        }
+    });
+
+    $(document).on("change","#form_type",function () {
+        var value = $('#form_type').val();
+        if(value === "2" || value === "2"){
+            $('#option_field').show();
+        }else{
+            $('#option_field').hide();
         }
     });
 });

@@ -47,10 +47,13 @@ class StepsForms(models.Model):
     form_type_choices = (
         (0, 'Number'),
         (1, 'Text'),
+        (2, 'Radio'),
+        (3, 'Dropdown'),
     )
     form_type = models.IntegerField(choices=form_type_choices, default=1)
     name = models.CharField(max_length=150)
     tooltip = models.TextField(null=True, default=None)
+    options = models.CharField(max_length=250, null=True, default=None)
 
     def __str__(self):
         return self.name

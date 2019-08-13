@@ -72,8 +72,8 @@
 
   <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-plus"></i> Tambah Jenis Sertifikasi</button> -->
   
-  <div class="modal fade bs-example-modal-sm" id="modal_form" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+  <div class="modal fade bs-example-modal-md" id="modal_form" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
       <div class="modal-content">
 
         <div class="modal-header">
@@ -101,11 +101,20 @@
                 <select class="form-control" name="form_type" id="form_type" required>
                   <option value="0">Angka</option>
                   <option value="1">Teks</option>
+                  <option value="2">Radio</option>
+                  <option value="3">Dropdown</option>
                 </select>
               </div>
             </div>
+            <div class="form-group" id="option_field">
+              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Pilihan
+              </label>
+              <div class="col-md-10 col-sm-10 col-xs-12">
+                <input type="text" name="options" id="steps_forms_options" required="required" class="form-control col-md-7 col-xs-12">
+              </div>
+            </div>
             <div class="form-group">
-              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Ket.
+              <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Keterangan
               </label>
               <div class="col-md-10 col-sm-10 col-xs-12">
                 <textarea name="tooltip" id="steps_forms_tooltip" class="form-control col-md-7 col-xs-12"></textarea>
