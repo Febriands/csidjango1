@@ -55,7 +55,7 @@
         </div>
         <div class="modal-body">
           <!-- <h4>Text in a modal</h4> -->
-          <form id="form_types" data-parsley-validate class="form-horizontal form-label-left">
+          <form id="form_types" data-parsley-validate class="form-horizontal form-label-left" method="post">
             <input type='hidden' name='id' id="types_id" value=''/>
             <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}'/>
             <div class="form-group">

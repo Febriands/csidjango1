@@ -26,6 +26,12 @@ $(document).ready(function(){
                         case 1:
                             type = "Teks";
                             break;
+                        case 2:
+                            type = "Radio";
+                            break;
+                        case 3:
+                            type = "Dropdown";
+                            break;
                         default:
                             type = "Angka";
                             break;
@@ -35,6 +41,7 @@ $(document).ready(function(){
                         i++,
                         item.fields.name,
                         type,
+                        item.fields.options,
                         item.fields.tooltip,
                         actions,
                     ]);
@@ -81,6 +88,14 @@ $(document).ready(function(){
             $("#steps_forms_tooltip").val(data[0].fields.tooltip);
             $("#form_type option[value="+data[0].fields.form_type+"]").prop('selected', true);
             $("#form_type").prop('disabled', true);
+
+            if(data[0].fields.options){
+                $('#option_field').show();
+                $("#steps_forms_options").val(data[0].fields.options);
+            }else{
+                $('#option_field').hide();
+                $("#steps_forms_options").val("");
+            }
 
             $("#modal_form").modal('show');
         });
@@ -187,7 +202,7 @@ $(document).ready(function(){
 
     $(document).on("change","#form_type",function () {
         var value = $('#form_type').val();
-        if(value === "2" || value === "2"){
+        if(value === "2" || value === "3"){
             $('#option_field').show();
         }else{
             $('#option_field').hide();

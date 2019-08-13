@@ -18,7 +18,7 @@ $(document).ready(function(){
             });
 
             details.forEach(function(item) {
-                forms[item.section] += form_builder(item.field, item.type, item.name, item.value, item.tooltip);
+                forms[item.section] += form_builder(item.field, item.type, item.name, item.value, item.tooltip, item.options.split(","));
             });
 
             docs.forEach(function(item) {
@@ -40,7 +40,7 @@ $(document).ready(function(){
 
     load_steps(active);
 
-    $( ".form-steps" ).submit(function( event ) {
+    $(document).on("submit",".form-steps",function (event) {
         var formData = new FormData(this);
 
         $.ajax({
@@ -59,7 +59,7 @@ $(document).ready(function(){
         });
     });
 
-    $( ".form-steps-docs" ).submit(function( event ) {
+    $(document).on("submit",".form-steps-docs",function (event){
         var formData = new FormData(this);
 
         $.ajax({
