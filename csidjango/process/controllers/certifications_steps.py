@@ -29,6 +29,7 @@ def index(request, steps_id):
                 "name": item.steps_forms.name,
                 "value": item.value,
                 "tooltip": item.steps_forms.tooltip,
+                "options": item.steps_forms.options,
             })
 
             sections_list[item.steps_sections_id] = {
@@ -39,7 +40,6 @@ def index(request, steps_id):
         docs = CertificationsOfflineDocuments.objects.filter(certifications_steps=steps)
 
         for item in docs:
-            print(item)
             if item.files_path:
                 path = item.files_path
             else:

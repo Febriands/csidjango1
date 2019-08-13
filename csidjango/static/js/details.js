@@ -18,7 +18,11 @@ $(document).ready(function(){
             });
 
             details.forEach(function(item) {
-                forms[item.section] += form_builder(item.field, item.type, item.name, item.value, item.tooltip);
+                if(item.type === 0 || item.type === 1){
+                    forms[item.section] += form_builder(item.field, item.type, item.name, item.value, item.tooltip);
+                }else if (item.type === 2 || item.type === 3) {
+                    forms[item.section] += form_builder(item.field, item.type, item.name, item.value, item.tooltip, item.options.split(","));
+                }
             });
 
             docs.forEach(function(item) {

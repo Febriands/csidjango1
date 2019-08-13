@@ -38,6 +38,7 @@ def save(request):
     forms.form_type = request.POST.get('form_type')
     forms.name = request.POST.get('name')
     forms.tooltip = request.POST.get('tooltip')
+    forms.options = request.POST.get('options')
     forms.save()
 
     done = True
