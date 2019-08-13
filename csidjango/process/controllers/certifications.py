@@ -56,7 +56,7 @@ def save(request):
         certifications = Certifications()
         certifications.types_id = request.POST.get('types_id')
         certifications.name = request.POST.get('name')
-        certifications.applicant = User.objects.filter(id=1).first()
+        certifications.applicant = request.user
         certifications.completed = 0
         certifications.left = steps.count()
         certifications.created = time.time()
