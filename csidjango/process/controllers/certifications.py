@@ -15,8 +15,8 @@ def index(request):
     data = []
 
     for item in certifications:
-        total = CertificationsDetails.objects.filter(certifications_steps__certifications=item).count()
-        complete = CertificationsDetails.objects.filter(certifications_steps__certifications=item, value__isnull=False).count()
+        total = CertificationsSteps.objects.filter(certifications=item).count()
+        complete = item.completed
 
         progress_text = str(complete) + "/" + str(total)
         if total > 0:

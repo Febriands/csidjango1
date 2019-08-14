@@ -93,7 +93,17 @@ def save(request):
 
                             done = True
                             message = "Success"
-    
+
+            total_forms = CertificationsDetails.objects.filter(certifications_steps=steps).count()
+            complete_forms = CertificationsDetails.objects.filter(certifications_steps=steps, value__isnull=False).count()
+
+            if complete_forms == total_forms and not steps.validated:
+                steps.validated = True
+                steps.save()
+
+                steps.certifications.completed += 1
+                steps.certifications.save()
+
     return JsonResponse({
         'done': done,
         'message': message
