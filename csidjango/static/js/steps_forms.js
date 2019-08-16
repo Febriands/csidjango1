@@ -32,6 +32,9 @@ $(document).ready(function(){
                         case 3:
                             type = "Dropdown";
                             break;
+                        case 4:
+                            type = "Checkbox";
+                            break;
                         default:
                             type = "Angka";
                             break;
@@ -202,7 +205,7 @@ $(document).ready(function(){
 
     $(document).on("change","#form_type",function () {
         var value = $('#form_type').val();
-        if(value === "2" || value === "3"){
+        if(value === "2" || value === "3" || value === "4"){
             $('#option_field').show();
         }else{
             $('#option_field').hide();

@@ -79,7 +79,10 @@ def save(request):
                 forms = StepsForms.objects.filter(section=section)
 
                 for item in forms:
-                    value = request.POST.get(str(item.id)) if request.POST.get(str(item.id)) else None
+                    if item.form_type == 4:
+                        value = ",".join(request.POST.getlist(str(item.id))) if request.POST.getlist(str(item.id)) else None
+                    else:
+                        value = request.POST.get(str(item.id)) if request.POST.get(str(item.id)) else None
 
                     if value:
                         details = CertificationsDetails.objects.filter(certifications_steps=steps, steps_forms=item).first()
@@ -148,6 +151,49 @@ def save_docs(request):
 
                             done = True
                             message = "Success"
+
+    return JsonResponse({
+        'done': done,
+        'message': message
+    })
+
+
+def reset_form(request, steps_id, steps_forms_id):
+    done = False
+    message = "Failed"
+
+    details = CertificationsDetails.objects.filter(certifications_steps_id=steps_id, steps_forms_id=steps_forms_id).first()
+
+    if details:
+        details.value = ""
+        details.save()
+
+        details.certifications_steps.validated = False
+        details.certifications_steps.save()
+        details.certifications_steps.certifications.completed -= 1
+        details.certifications_steps.certifications.save()
+
+        done = True
+        message = "Success"
+
+    return JsonResponse({
+        'done': done,
+        'message': message
+    })
+
+
+def reset_doc(request, steps_id, offline_documents_id):
+    done = False
+    message = "Failed"
+
+    documents = CertificationsOfflineDocuments.objects.filter(certifications_steps_id=steps_id, offline_documents_id=offline_documents_id).first()
+
+    if documents:
+        documents.files_path = ""
+        documents.save()
+
+        done = True
+        message = "Success"
 
     return JsonResponse({
         'done': done,

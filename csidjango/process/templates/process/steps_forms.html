@@ -4,8 +4,16 @@
   <div class="right_col" role="main">
     <div class="">
       <div class="page-title">
-        <div class="title_left">
-          <h3>Kelengkapan Tahap Bagian {{ sections_title }}</h3>
+        <div class="title_left" style="width: 100%;">
+          <h3>
+            <a href="/process/types">Sertifikasi</a>
+            <i class="fa fa-chevron-right" style="font-size: 18px; opacity: 0.5;"></i>
+            <a href="/process/steps/{{ types_id }}">{{ types_name }}</a>
+            <i class="fa fa-chevron-right" style="font-size: 18px; opacity: 0.5;"></i>
+            <a href="/process/sections/{{ steps_id }}">{{ steps_name }}</a>
+            <i class="fa fa-chevron-right" style="font-size: 18px; opacity: 0.5;"></i>
+            {{ sections_title }}
+          </h3>
         </div>
 
       <div class="clearfix"></div>
@@ -104,6 +112,7 @@
                   <option value="1">Teks</option>
                   <option value="2">Radio</option>
                   <option value="3">Dropdown</option>
+                  <option value="4">Checkbox</option>
                 </select>
               </div>
             </div>

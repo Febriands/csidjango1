@@ -18,11 +18,11 @@ $(document).ready(function(){
             });
 
             details.forEach(function(item) {
-                forms[item.section] += form_builder(item.field, item.type, item.name, item.value, item.tooltip, item.options.split(","));
+                forms[item.section] += form_builder(item.field, item.type, item.name, item.value, item.tooltip, item.options.split(","), steps_id);
             });
 
             docs.forEach(function(item) {
-                docs_forms[item.section] += docs_form_builder(item.field, item.name, item.path, item.tooltip);
+                docs_forms[item.section] += docs_form_builder(item.field, item.name, item.path, item.tooltip, steps_id);
             });
 
             Object.keys(sections).forEach(function (key) {
@@ -51,7 +51,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             success: function (result) {
-                if(result.done == "Failed"){
+                if(!result.done){
                     alert("Gagal menyimpan data");
                     return false;
                 }
@@ -70,7 +70,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             success: function (result) {
-                if(result.done == "Failed"){
+                if(!result.done){
                     alert("Gagal menyimpan data");
                     return false;
                 }
@@ -81,5 +81,24 @@ $(document).ready(function(){
     $(document).on("click",".steps-menu-item",function () {
         var step = this.id.split('-')[1];
         load_steps(step);
+    });
+
+    $(document).on("click",".reset-form",function () {
+        var detail = this.id.split("-");
+
+        $.ajax({
+            type: "GET",
+            url: "/api/details/form/reset/"+detail[0]+"/"+detail[1],
+            success: function (result) {
+                if(!result.done){
+                    alert("Gagal mengatur ulang data");
+                    return false;
+                }else{
+                    alert("Berhasil mengatur ulang data");
+                    location.reload();
+                    return false;
+                }
+            }
+        });
     });
 });

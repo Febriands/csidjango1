@@ -49,6 +49,7 @@ class StepsForms(models.Model):
         (1, 'Text'),
         (2, 'Radio'),
         (3, 'Dropdown'),
+        (4, 'Checkbox'),
     )
     form_type = models.IntegerField(choices=form_type_choices, default=1)
     name = models.CharField(max_length=150)

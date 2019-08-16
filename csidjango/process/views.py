@@ -26,6 +26,8 @@ def sections(request, steps_id):
     return render(request, "process/sections.html", {
         "steps_id": steps.id,
         "steps_name": steps.name,
+        "types_id": steps.types.id,
+        "types_name": steps.types.name,
     })
 
 def steps_forms(request, sections_id):
@@ -34,6 +36,10 @@ def steps_forms(request, sections_id):
     return render(request, "process/steps_forms.html", {
         "sections_id": sections.id,
         "sections_title": sections.title,
+        "steps_id": sections.steps.id,
+        "steps_name": sections.steps.name,
+        "types_id": sections.steps.types.id,
+        "types_name": sections.steps.types.name,
     })
 
 

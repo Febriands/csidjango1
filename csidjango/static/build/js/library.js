@@ -19,7 +19,7 @@ var dateConvert = function(timestamp, hms=false){
     return hms ? year+'-'+month+'-'+day+' '+hour+':'+minutes+':'+seconds : year+'-'+month+'-'+day;
 }
 
-var form_builder = function(field, type, label, value, tooltip, options=null){
+var form_builder = function(field, type, label, value, tooltip, options=null, steps_id){
     var tmp_type = "text";
     switch(type){
         case 0:
@@ -38,6 +38,7 @@ var form_builder = function(field, type, label, value, tooltip, options=null){
             <label class="control-label">
                 ` + label + `
             </label>
+            | <a href="#" id="`+ steps_id+"-"+field +`" class="reset-form" style="opacity: 0.5;">Reset</a>
     `;
 
 
@@ -79,6 +80,23 @@ var form_builder = function(field, type, label, value, tooltip, options=null){
         form += `
             </select>
         `;
+    }else if(type === 4){
+        var value_list = value.split(",");
+        options.forEach(function (item) {
+            var selected = "";
+
+            if(value_list.includes(item)){
+                selected = "checked";
+            }
+
+            form += `
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="`+ field.toString() +`" value="`+ item +`" `+ selected +`> `+ item +`
+                    </label>
+                </div>
+            `;
+        });
     }
 
     form += tooltip + `
@@ -88,7 +106,7 @@ var form_builder = function(field, type, label, value, tooltip, options=null){
     return form;
 }
 
-var docs_form_builder = function(field, label, current, tooltip){
+var docs_form_builder = function(field, label, current, tooltip, steps_id){
     var files = "";
     if(current){
         var current_file_list = current.split("|");

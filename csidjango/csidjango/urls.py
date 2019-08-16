@@ -80,7 +80,9 @@ urlpatterns = [
     path('api/details/<int:steps_id>/', certifications_steps.index),
     path('api/details/save', certifications_steps.save),
     path('api/details/docs/save', certifications_steps.save_docs),
-    
+    path('api/details/form/reset/<int:steps_id>/<int:steps_forms_id>/', certifications_steps.reset_form),
+    path('api/details/doc/reset/<int:steps_id>/<int:steps_forms_id>/', certifications_steps.reset_form),
+
     path('progress/', include('progress.urls', namespace = 'progress')),
     path('schedules/', include('schedules.urls', namespace = 'schedules')),
     path('lists/', include('lists.urls', namespace = 'lists')),
