@@ -129,6 +129,7 @@ var docs_form_builder = function(field, label, current, tooltip, steps_id){
             <label class="control-label">
                 `+ label +`
             </label>
+            | <a href="#" id="`+ steps_id+"-"+ field +`" class="reset-doc" style="opacity: 0.5;">Reset</a>
             <p>
                 Saat ini: <br/>`+ files +`
             </p>

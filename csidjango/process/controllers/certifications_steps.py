@@ -143,6 +143,12 @@ def save_docs(request):
                                 file_list.append(filename)
                                 i += 1
 
+                            # Delete old file
+                            if documents.files_path:
+                                old_file_list = documents.files_path.split("|")
+                                for file in old_file_list:
+                                    default_storage.delete(settings.MEDIA_ROOT + "/docs/" + file)
+
                             documents.files_path = "|".join(file_list)
                             documents.save()
 
@@ -189,6 +195,12 @@ def reset_doc(request, steps_id, offline_documents_id):
     documents = CertificationsOfflineDocuments.objects.filter(certifications_steps_id=steps_id, offline_documents_id=offline_documents_id).first()
 
     if documents:
+        # Delete old file
+        if documents.files_path:
+            old_file_list = documents.files_path.split("|")
+            for file in old_file_list:
+                default_storage.delete(settings.MEDIA_ROOT + "/docs/" + file)
+
         documents.files_path = ""
         documents.save()
 

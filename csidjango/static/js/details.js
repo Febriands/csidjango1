@@ -41,6 +41,7 @@ $(document).ready(function(){
     load_steps(active);
 
     $(document).on("submit",".form-steps",function (event) {
+        event.preventDefault(event);
         var formData = new FormData(this);
 
         $.ajax({
@@ -54,12 +55,16 @@ $(document).ready(function(){
                 if(!result.done){
                     alert("Gagal menyimpan data");
                     return false;
+                }else{
+                    alert("Berhasil menyimpan data");
+                    location.reload();
                 }
             }
         });
     });
 
     $(document).on("submit",".form-steps-docs",function (event){
+        event.preventDefault(event);
         var formData = new FormData(this);
 
         $.ajax({
@@ -73,6 +78,9 @@ $(document).ready(function(){
                 if(!result.done){
                     alert("Gagal menyimpan data");
                     return false;
+                }else{
+                    alert("Berhasil menyimpan data");
+                    location.reload();
                 }
             }
         });
@@ -89,6 +97,25 @@ $(document).ready(function(){
         $.ajax({
             type: "GET",
             url: "/api/details/form/reset/"+detail[0]+"/"+detail[1],
+            success: function (result) {
+                if(!result.done){
+                    alert("Gagal mengatur ulang data");
+                    return false;
+                }else{
+                    alert("Berhasil mengatur ulang data");
+                    location.reload();
+                    return false;
+                }
+            }
+        });
+    });
+
+    $(document).on("click",".reset-doc",function () {
+        var detail = this.id.split("-");
+
+        $.ajax({
+            type: "GET",
+            url: "/api/details/doc/reset/"+detail[0]+"/"+detail[1],
             success: function (result) {
                 if(!result.done){
                     alert("Gagal mengatur ulang data");

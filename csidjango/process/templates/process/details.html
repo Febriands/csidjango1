@@ -34,7 +34,7 @@
                     <p class="lead">{{ step.steps.name }}</p>
                     <div class="col-md-6 steps-form">
                       <h4>Form</h4>
-                      <form data-parsley-validate class="form-horizontal form-label-left form-steps" method="post">
+                      <form data-parsley-validate class="form-horizontal form-label-left form-steps" method="POST">
                         <input type='hidden' name='steps_id' value='{{ step.id }}'/>
                         <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}'/>
                         <div id="form_details_{{ step.id }}">
@@ -46,7 +46,7 @@
                     </div>
                     <div class="col-md-6 steps-documents">
                       <h4>Dokumen</h4>
-                      <form data-parsley-validate class="form-horizontal form-label-left form-steps-docs">
+                      <form data-parsley-validate class="form-horizontal form-label-left form-steps-docs" method="POST">
                         <input type='hidden' name='steps_id' value='{{ step.id }}'/>
                         <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}'/>
                         <div id="form_docs_{{ step.id }}">
