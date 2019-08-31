@@ -65,6 +65,7 @@ $(document).ready(function(){
     load_table();
 
     $( "#form_certifications" ).submit(function( event ) {
+        event.preventDefault(event);
         var formData = new FormData(this);
         
         $.ajax({
@@ -75,7 +76,10 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             success: function (result) {
-                if(result.done == "Failed"){
+                if(result.done){
+                    alert("Berhasil");
+                    location.reload();
+                }else{
                     alert("Gagal mengajukan sertifikasi");
                     return false;
                 }

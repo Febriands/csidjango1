@@ -24,6 +24,7 @@ from lists.controllers import user_list
 from process.controllers import certifications, certifications_steps, forms
 from process.controllers import offline_documents as docs
 from process.controllers import sections, steps, types
+from accounts.controllers import sso_controller
 
 from . import views
 
@@ -86,6 +87,9 @@ urlpatterns = [
     path('progress/', include('progress.urls', namespace = 'progress')),
     path('schedules/', include('schedules.urls', namespace = 'schedules')),
     path('lists/', include('lists.urls', namespace = 'lists')),
+
+    # sso endpoints
+    path('login/callback', sso_controller.authenticate),
 ]
 
 if settings.DEBUG:

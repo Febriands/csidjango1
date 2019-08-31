@@ -120,7 +120,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
 class Account(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
     name = models.CharField(max_length=150)
+    role = models.CharField(max_length=200)
+    current_role = models.IntegerField()
 
     def __str__(self):
         return self.name
+
+class SSOApplications(models.Model):
+    name = models.CharField(max_length=150)
+    url = models.CharField(max_length=200)
+    key = models.CharField(max_length=150)
+
+class Roles(models.Model):
+    role_id = models.IntegerField()
+    name = models.CharField(max_length=100)
